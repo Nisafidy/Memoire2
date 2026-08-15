@@ -12,7 +12,8 @@
 const state = {
   objectif: null,   // { lat, long }
   habitat: null,    // { lat, long }
-  locationData: null, // Module 2 — données de localisation (ville, transport, irradiation)
+  locationData: null, // Module 2 — données de localisation
+  familyData: null,   // Module 3 — données de profil familial
   family: {
     name: "",
     age: null,
@@ -451,6 +452,7 @@ function buildOutputPayload() {
     objectif: state.objectif,
     habitat: state.habitat,
     locationData: state.locationData,
+    familyData: state.familyData,
     family: {
       name: state.family.name,
       age: state.family.age,
@@ -471,7 +473,7 @@ function buildRecap() {
 }
 
 async function buildRecapWithLocationData() {
-  // Appeler le Module 2 — Localisation
+  // Module 2 — Localisation
   if (!state.locationData && state.objectif && state.habitat) {
     try {
       state.locationData = await buildLocationData(state, villes);
@@ -481,6 +483,18 @@ async function buildRecapWithLocationData() {
       state.locationData = { error: e.message };
     }
   }
+
+  // Module 3 — Profil familial
+  if (!state.familyData) {
+    try {
+      state.familyData = await buildFamilyData(state);
+      console.log("✓ Module 3 (Profil Familial) complété :", state.familyData);
+    } catch (e) {
+      console.error("✗ Erreur Module 3 :", e);
+      state.familyData = { error: e.message };
+    }
+  }
+
   buildRecap();
 }
 

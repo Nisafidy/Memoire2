@@ -1,0 +1,402 @@
+variabledescription
+hhgrap,Numéro de grappe
+poids,Pondération,
+hhnum,NumMENAGE
+idhh,
+q1_0x,ID Individu
+q1_00,ID correspondant
+q1_01,Sexe
+q1_02,Lien de parenté
+q1_04m,Âge, mois
+q1_05,Acte de naissance
+q1_06,Acte de naissance montré
+q1_07,Situation matrimoniale
+q1_08,Âge au 1er mariage
+q1_09,Présent au moment de l'enquête
+q1_10,Vit de manière continue dans HH depuis au moins 6 mois
+q1_11,a l'intention de rester HH pour au moins 6 mois
+q1_11a,Situation de résidence
+q1_04a,
+q1_12,Religion
+q1_13,Nationalité
+q1_14,Né dans cette commune
+q1_15,a déjà vécu dans une autre commune > 6 mois
+q1_16,Dernière commune avant de venir vivre ici
+q1_17,# années dans cette commune avant de venir vivre ici
+q1_18,Raison principale venir vivre ici
+q1_19,Le père habite dans HH
+q1_20,ID père
+q1_21,Le père est en vie
+q1_22,La mère habite dans HH
+q1_23,ID mère
+q1_24,La mère est en vie
+q1_25,Possède un tél
+q1_26,a utilisé un tél 7 derniers jours
+q1_27,Dép.crédits de comm. 7 derniers jours
+q1_28a,Accès internet : sur tél
+q1_28b,… au bureau
+q1_28c,… au cybercafé
+q1_28d,… à domicile
+q1_28e,… à l'école / université
+q1_29,Compte mail
+q1_30,Utilisateur de réseaux sociaux
+q1_31a,Facebook
+q1_31b,Gazouillement
+q1_31c,LinkedIn
+q1_31d,MySpace
+q1_31f,Instagram
+q1_31g,TikTok
+q1_31e,Autre
+q1_32,Durée de connexion par jour, minutes
+q1_33,Difficultés pour voir même avec des lunettes
+q1_34,… entendre même avec prothèse auditive
+q1_35,… marcher ou monter les escaliers
+q1_36,… se rappeler certaines choses ou se concentrer
+q1_37,… prendre soin de soi, se laver, s'habiller…
+q1_38,… communiquer dans la langue habituelle, comprendre les autres…
+q1_39,Un handicap mental ou physique
+q1_40,La principale cause de la difficulté
+fsect1,Section aileron I
+q4a_00,Code ID du répondant
+q4a_01,7 derniers jours, effectué un travail…
+q4a_02,… a dirigé une entreprise…
+q4a_03,… contribué sans rémunération…
+q4a_04,Bien que… a effectué un travail…
+q4a_05,Pourquoi n'est pas allé au travail les 7 derniers jours
+q4a_06,a continué pendant la basse / fin de saison ou covid-19
+q4a_07,Y retounerez-vous dans 3 mois ou moins
+q4a_08,Continuer à recevoir un revenu de l'emploi pendant l'absence
+q4a_09,au cours des 7 derniers jours, a effectué un travail…
+q4a_10,L'emploi consiste à …
+q4a_11,Destination des produits
+q4a_12,Dans le passé : vente ou usage familial
+q4a_13,un été recruté
+q4a_141,… Code NOMAP
+q4a_15,# jours pour ce travail
+q4a_16,# heures par jour
+q4a_17,# emplois ou activités professionnelles
+q4a_18,Profession
+q4a_19,CITP
+q4a_19a,CITPa
+q4a_19b,CITPb
+q4a_19c,CITPc
+q4a_19d,CITPd
+q4a_20,L'établissement ou l'entreprise à un nom
+q4a_21,Nom
+q4a_22,Activité principale
+q4a_23,NOMAC
+q4a_230,NOMAC0
+q4a_23a,NOMACa
+q4a_23b,NOMAb
+q4a_23c,NOMAcc
+q4a_24,Statut dans l'emploi
+q4a_25,Qui prend les décisions
+q4a_26,Engage des salariés
+q4a_27,Secteur institutionnel
+q4a_28,Type de paiement
+q4a_29,Contrat écrit ou verbal
+q4a_30,Type de contrat
+q4a_31,Durée du contrat actuel
+q4a_32,Employeur vers CNAPS/Fonds de pension
+q4a_32a,Services affiliés médicaux
+q4a_33,Congé payé annuel
+q4a_34,# jours de congé jouis 12 derniers mois
+q4a_35,Congé maladie en cas de maladie ou de blessure
+q4a_36,Endroit de travail habituel
+q4a_37,# personnes travaillant sur votre lieu de travail
+q4a_38,Forme juridique ?
+q4a_39,Numéro statistique
+q4a_40,Type de comptabilité ou enregistrement comptable
+q4a_41,Date de début dans l'entreprise, année
+q4a_42,Date de début dans l'entreprise, mois
+q4a_43,Congés de maternité / paternité
+q4a_44,# jours de congé de maternité / paternité
+q4a_45,Bulletin de salaire
+q4a_46a,Montant salaire
+q4a_46b,Unité de temps
+q4a_46c,Responsabilité Déduction fiscale
+q4a_47,Nombres premiers ?
+q4a_48a,Montant premiers
+q4a_48b,Unité de temps
+q4a_49,Autres avantages
+q4a_49a,Loyer
+q4a_49b,Vêtements
+q4a_49c,Carburant ou transport
+q4a_49d,Domestiques
+q4a_49e,Autres avantages
+q4a_50a,Montant de ces avantages
+q4a_50b,Unité de temps
+q4a_51,Nourritures ?
+q4a_52a,Montant nourriture
+q4a_52b,Unité de temps
+q4a_53,Niveau de satisfaction sur l'emploi
+q4a_541,Profession 2ème emploi
+q4a_54,CITP
+q4a_54a,CITPa
+q4a_54b,CITPb
+q4a_54c,CITPc
+q4a_54d,CITPd
+q4a_55,Activité principale de l'entreprise
+q4a_56,NOMAC
+q4a_560,NOMAC0
+q4a_56a,NOMACa
+q4a_56b,NOMAb
+q4a_56c,NOMAcc
+q4a_57,Statut dans l'emploi
+q4a_58,L'entreprise engage régulièrement des salariés
+q4a_59,Type de paiement
+q4a_60,Déduction des impôts
+q4a_61,Secteur institutionnel
+q4a_62a,Montant salaire, 1000 MGA
+q4a_62b,Unité de temps
+q4a_63,Nombres premiers ?
+q4a_64a,Montant primes, 1000 MGA
+q4a_64b,Unité de temps
+q4a_65,Autres avantages
+q4a_66a,Montant de ces avantages, 1000 MGA
+q4a_66b,Unité de temps
+q4a_67,Nourritures ?
+q4a_68a,Montant nourriture, 1000 MGA
+q4a_68b,Unité de temps
+q4a_69,# heures par semaine
+q4a_70,# jours par semaine
+q4a_71,# heures par jour
+q4a_72,Absent ou en congé les 7 derniers jours
+q4a_73,Heures sup les 7 derniers jours
+q4a_74,# heures sup les 7 derniers jours
+q4a_75,# heures total les 7 derniers jours
+q4a_76,# heures par semaine
+q4a_77,Est-ce # heures effectives, 7 derniers jours ?
+q4a_78,# heures effectifs, 7 derniers jours
+q4a_79,Autre emploi, 7 derniers jours
+q4a_80,# heures par semaine, tous autres emplois
+q4a_81,Est-ce # heures effectives la semaine dernière ?
+q4a_82,# heures 7 derniers jours, tous autres emplois
+q4a_83,30 derniers jours recherche un emploi
+q4a_84,Souhaite travailler davantage ?
+q4a_85,Pourrait commencer à travailler davantage 2 proch.semaines
+q4a_86,# heures sup par semaine
+q4a_87,Souhaite changer la situation actuelle
+q4a_88,Situation qui change la raison principale
+q4a_89,7 derniers jours, planteur… , cultures…
+q4a_90,Principales cultures conso ménages
+q4a_91,# jours durant la semaine dernière
+q4a_92,# heure par jour durant la semaine dernière
+q4a_93a,Autre activité pour nourriture ménage a
+q4a_93b,Autre activité pour nourriture ménage b
+q4a_94,# jours durant la semaine dernière
+q4a_95,# heures par jour au total semaine dernière
+q4a_96,Recherche autre emploi 30 derniers jours
+q4a_97,Lancer son activité professionnelle
+q4a_98,Action pour trouver un emploi…
+q4a_99,Autres actions pour trouver un emploi ?
+q4b_00,Ces autres actions…
+q4b_01,Depuis combien de temps essaie de trouver un emploi…
+q4b_02,a recherché un travail ou lancer une activité
+q4b_03,Actuellement travaillerait si emploi
+q4b_04,Principale raison n'a pas essayé de trouver…
+q4b_05,Va commencer cet emploi/activité dans…
+q4b_06,Pouvait commencer à travailler la semaine dernière
+q4b_07,Pourrait commencer à travailler deux semaines prochaines
+q4b_08,Si NON, pourquoi
+q4b_09,La situation principale actuellement
+q4b_10,7 derniers jours, un cueilli des plantes sauvages
+q4b_11,Combien d'heures
+q4b_12,un chassé de la viande de brousse
+q4b_13,Combien d'heures
+q4b_14,a préparé des aliments conservés…
+q4b_15,Combien d'heures
+q4b_16,Travaux de construction
+q4b_17,Combien d'heures
+q4b_18,Fabriquer des produits pour HH / famille
+q4b_19,Combien d'heures
+q4b_20,Collecteur de l'eau
+q4b_21,Combien d'heures
+q4b_22,Collecteur de bois de chauffe
+q4b_23,Combien d'heures
+q4c_01,Opportunités d'emploi pendant la crise sanitaire
+q4c_02,Effectué un travail avant le début de la crise sanitaire
+q4c_03,Le même emploi qu'avant le début de la crise sanitaire
+q4c_04,a quitté son emploi d'avant le début de la crise
+q4c_05,Pourquoi ?
+q4c_05a,Raisons liées à Covid19
+q4c_06,Activité principale avant le début de la crise
+q4c_06a,Branche de code
+q4c_06a1,Branche de code 1
+q4c_06a2,Branche de code 2
+q4c_06a3,Branche de code 3
+q4c_06a4,Branche de code 4
+q4c_07,Statut dans ancien emploi principal
+q4c_08,Mode de paiement
+q4c_09,#emplois perdus à cause du Covid-19
+num_zd,RAISINS
+fsect4,Section d'aileron FSECT4 IV
+q2_09,a fréquenter une école 2021 / 2022
+total_dép,
+q0_04,Milieu de résidence
+hlid,
+éducation,Dernière classe acquise sans formation professionnelle
+niveau_éducation,Niveau d'éducation
+Internet,
+handicap,Personne handicapée
+je l'ai fait,ID Individu
+hlname,PRÉNOMS ET NOMS
+q1_03date,Date de naissance
+q0_12,Numéro Tél
+hhreg,Région
+hhdist,District
+hhcom,Commune
+milieu_gcu,Milieu de résidence
+milieu,
+hommes à queue,
+educ_cm,Dernière classe acquise sans formation professionnelle
+niveau_cm,
+religion_cm,Religion
+nationalité_cm,Nationalité
+posséder_phoncm,Possède un tél
+utiliser_phoncm,a utilisé un tél 7 derniers jours
+courrier_cm,Compte mail
+accès_netcm,
+sexe_cm,Sexe
+âge_cm,
+agegrp_cm,RECODE de l'âge
+présence scolaire,Éducation (Fréquentation)
+actif,
+salaire,
+âge_travail,
+non-emploi,
+chom_ld,
+rpasdispo,
+setps_chom,
+chom_mop,
+trop d'heures de semaine,
+femme_non_agri,
+composition,
+participe,
+yage_work,
+paj,
+ynotemploi,
+ymoe,
+ychom_ld,
+yrpasdispo,
+ydis,
+potentiel,
+ysetps_chom,
+ychom_mop,
+yilo_joball_tru,
+ilo_key,Identifiant unique clé par individu
+ilo_hh,Identifiant unique clé par ménage
+ilo_hhsize,Nombre de membres du ménage
+ilo_time,Heure (calendrier grégorien)
+ilo_wgt,Poids de l'échantillon
+ilo_region_sub1,Sous-région nationale - niveau 1
+ilo_region_sub2,Sous-région nationale - niveau 2
+ilo_geo_details,Couverture géographique - Détaillée
+ilo_geo,Couverture géographique
+ilo_sex,Sexe
+ilo_age,Âge
+ilo_âge_5yrbands,Âge (tranches d'âge de 5 ans)
+ilo_âge_10yrbands,Âge (tranches d'âge de 10 ans)
+ilo_age_aggregate,Âge (agrégat)
+ilo_âge_ythadult,Âge (Jeunes et adultes)
+ilo_edu_attendance,Éducation (Fréquentation)
+ilo_swt_form,Formes de transition de l'école au travail
+ilo_swt_stage,Étapes de la transition de l'école au travail
+citoyenneté ilo,Citoyenneté
+ilo_religion_details,Religion
+ilo_religion_aggregate,Religion (Niveaux agrégés)
+ilo_relationship_details,Lien de parenté avec la personne de référence
+ilo_relationship_aggregate,Lien de parenté avec la personne de référence (niveaux agrégés)
+ilo_mrts_details,État civil
+ilo_mrts_aggregate,État civil (niveaux agrégés)
+ilo_dsb_détails,Statut d'invalidité (Détails)
+ilo_dsb_aggregate,Statut d'invalidité (global)
+ilo_wap,Population en âge de travailler
+ilo_lfs_emp,Emploi
+ilo_lfs_notemp_activ,Je cherche du travail
+ilo_lfs_notemp_avail,Disponible pour travailler
+ilo_lfs_notemp_futur,futurs titulaires
+ilo_lfs_notemp_will,Prêt à travailler
+ilo_lfs,Statut sur le marché du travail
+ilo_neet,Les jeunes qui ne sont ni scolarisés, ni employés, ni en formation
+ilo_sub_dest,Destination de production
+ilo_lfs_emp19,Emploi - 19e ICLS
+ilo_lfs19,Situation de la population active - 19e ICLS
+ilo_olf_dlma,Intégration au marché du travail (Degré de)
+ilo_olf_plf,main-d'œuvre potentielle
+ilo_olf_gap,Les personnes disposées à travailler
+ilo_mjh,Plusieurs titulaires d'emplois
+ilo_job1_ste_icse93,Statut professionnel (ICSE 93) - Emploi principal
+ilo_job1_ste_aggregate,Situation professionnelle (Globale) - Emploi principal
+ilo_job2_ste_icse93,Statut professionnel (ICSE 93) - Deuxième emploi
+ilo_job2_ste_aggregate,Situation professionnelle (Globale) - Deuxième emploi
+code_isic,
+ilo_job1_eco_isic4_4digits,Activité économique (CITI Rév. 4), niveau à 4 chiffres - emploi principal
+ilo_job1_eco_isic4_3digits,Activité économique (CITI Rév. 4), niveau à 3 chiffres - emploi principal
+ilo_job1_eco_isic4_2digits,Activité économique (CITI Rév. 4), niveau à 2 chiffres - emploi principal
+ilo_job1_éco_isic4,Activité économique (CITI Rév. 4) - emploi principal
+ilo_job1_eco_aggregate,Activité économique (agrégée) - emploi principal
+ilo_job1_secteur_éco,Activité économique (secteur) - emploi principal
+ilo_job1_éco_agnag,Activité économique (agriculture, hors agriculture) - emploi principal
+ilo_job2_eco_isic4_2digits,Activité économique (CITI Rév. 4), niveau à 2 chiffres - deuxième emploi
+ilo_job2_éco_isic4,Activité économique (CITI Rév. 4) - deuxième emploi
+ilo_job2_eco_aggregate,Activité économique (agrégée) - deuxième emploi
+ilo_job2_secteur_éco,Activité économique (Secteur) - deuxième emploi
+ilo_job2_éco_agnag,Activité économique (agriculture, hors agriculture) - deuxième emploi
+ilo_job1_ocu_isco08_3digits,Profession (CITI-08), niveau à 3 chiffres - emploi principal
+ilo_job1_ocu_isco08_2digits,Profession (CITI-08), niveau à 2 chiffres - emploi principal
+ilo_job1_ocu_isco08,Profession (CITI-08) - emploi principal
+ilo_job1_ocu_aggregate,Profession (agrégat) - emploi principal
+ilo_job1_ocu_skill,Profession (niveau de qualification) - emploi principal
+ilo_job1_soignants,Aides-soignants (codes ISCO08 et ISIC4 à 2 chiffres)
+ilo_job2_ocu_isco08_2digits,Profession (CITI-08), niveau à 2 chiffres - deuxième emploi
+ilo_job2_ocu_isco08,Profession (CITI-08) - deuxième emploi
+ilo_job2_ocu_aggregate,Profession (agrégat) - deuxième emploi
+ilo_job2_ocu_skill,Profession (niveau de compétence) - deuxième emploi
+ilo_job1_ins_sector,Secteur institutionnel (privé/public) des activités économiques - emploi principal
+ilo_job1_comment_habituellement,Nombre d'heures hebdomadaires habituellement travaillées - emploi principal
+ilo_job1_comment_les_bandes_usuelles,Nombre d'heures hebdomadaires travaillées habituellement par groupes - emploi principal
+ilo_job1_comment_réel,Heures travaillées hebdomadaires - emploi principal
+ilo_job1_comment_les_bandes_réelles,Nombre d'heures travaillées par semaine - emploi principal
+ilo_job2_comment_habituellement,Nombre d'heures travaillées par semaine en général - deuxième emploi
+ilo_job2_comment_les_bandes_usuelles,Nombre d'heures hebdomadaires généralement travaillées par groupes - deuxième emploi
+ilo_job2_comment_réel,Heures travaillées hebdomadaires - deuxième emploi
+ilo_job2_comment_les_bandes_réelles,Nombre d'heures travaillées par semaine (deuxième emploi)
+ilo_joball_comment_habituellement,Nombre d'heures travaillées par semaine en moyenne - tous les emplois
+ilo_joball_comment_les_bandes_habituelles,Nombre d'heures hebdomadaires travaillées habituellement - tous les emplois
+ilo_joball_comment_réel,Heures hebdomadaires réellement travaillées - tous les emplois
+ilo_joball_comment_les_vrais_groupes,Nombre d'heures travaillées par semaine - tous les emplois
+ilo_job1_temps_de_travail,Emploi (Aménagement du temps de travail)
+ilo_job1_contrat_de_travail,Emploi (Type de contrat)
+ilo_job1_job_tempdur_details,Durée totale détaillée du contrat à durée déterminée
+ilo_job1_job_tempdur_aggregate,Durée totale cumulée des contrats à durée déterminée
+ilo_job1_socsec,Droit à la sécurité sociale
+ilo_job1_congé payé,Droit à un congé payé
+ilo_job1_sickleave,Droit au congé de maladie
+ilo_job1_parleave,Droit au congé parental
+ilo_job1_rgt,Inscription
+ilo_job1_bkp,Comptabilité
+ilo_job1_pow,Lieu de travail
+ilo_job1_size_details,Taille de l'établissement (détaillée)
+ilo_job1_size_aggregate,Taille de l'établissement (agrégée)
+ilo_job1_ife_prod,Économie informelle / formelle (Unité de production)
+ilo_joball_lookoj,Je cherche un autre emploi.
+ilo_joball_will,Prêt à faire des heures supplémentaires
+ilo_joball_disponible,Disponible pour effectuer des heures supplémentaires
+ilo_dur_details,Durée du chômage (Détails)
+ilo_dur_aggregate,Durée du chômage (agrégée)
+ilo_olf_reason,Lien avec le marché du travail (Raisons de ne pas chercher d'emploi)
+ilo_dis,demandeurs d'emploi découragés
+ilo_olf_reason_care,Les raisons de l'inactivité professionnelle sont liées aux soins.
+ilo_sub_all,producteurs à usage propre
+ilo_comment_sub,Heures hebdomadaires réellement/habituellement travaillées en production pour usage personnel
+ilo_comment_sous-travail,Heures hebdomadaires réellement travaillées pour la production à usage personnel et tous les emplois
+ilo_job1_travaux_dangereux,Travail dangereux
+ilo_job1_travail_enfant,travail des enfants
+ilo_job1_travail_enfantdg1,Travail des enfants ODD1
+ilo_job1_enfant_travail_domestique,Enfants travaillant à domicile
+ilo_job1_vie_nature,Économie informelle / formelle (Nature de l'emploi) - Emploi principal
+ilo_joball_tru,Sous-emploi lié au temps
+ilo_age_cls,Âge (Travail des enfants)
+ilo_cl_work,Travail (enfants)
+ilo_cl_secteur_éco,Activité économique (Secteur) - Travail des enfants

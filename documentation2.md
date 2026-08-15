@@ -141,7 +141,7 @@ Cette position devient la référence géographique de l'installation.
 
 # 5. DÉTERMINATION DE LA VILLE DE RÉFÉRENCE
 
-Le fichier `ville.csv` contient les informations relatives aux villes utilisées par le système.
+Le fichier `villes.csv` contient les informations relatives aux villes utilisées par le système.
 
 Structure conceptuelle :
 
@@ -169,7 +169,7 @@ ville = {
 
 ## 5.1 Recherche de la ville candidate
 
-Pour chaque ville du fichier `ville.csv`, le système calcule une distance géographique entre :
+Pour chaque ville du fichier `villes.csv`, le système calcule une distance géographique entre :
 
 ```text
 objectif
@@ -592,7 +592,7 @@ family_score
 
 # 16. APPRENTISSAGE AUTOMATIQUE DU SCORE INDIVIDUEL
 
-Le modèle est entraîné à partir des données disponibles de l'EPM 2021-2022 de l'INSTAT.
+Le modèle est entraîné à partir des données disponibles de l'EPM 2021-2022 de l'INSTAT.(dynamiques\data\EMPL_complet_energy_score.csv,variable.csv)
 
 La variable cible est :
 
@@ -1839,7 +1839,7 @@ Attendre clic "Commencer"
 
 objectif ← position sélectionnée sur la carte
 
-villes ← charger ville.csv
+villes ← charger villes.csv
 
 candidats ← rechercher villes proches de objectif
 
@@ -2073,7 +2073,7 @@ interface.js
 map-selection.js
     ↓
 locationService.js
-    ├── ville.csv
+    ├── villes.csv
     ├── OSRM / Valhalla
     └── NASA POWER
 
