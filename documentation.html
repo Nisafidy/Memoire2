@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSAA — Documentation</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="blueprint-header">
+  <span class="dossier-tag">DSAA — Dossier n° 001 · v2.0</span>
+  <h1>Algorithme de Dimensionnement Solaire Adaptatif</h1>
+  <p>Avant de commencer, prenez deux minutes pour comprendre ce que ce système calcule — et ce qu'il ne peut pas vous garantir.</p>
+  <button class="compass-btn" onclick="window.location.href='interface.html'">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M15 9l-3.5 6-3-1.5L12 7z"/></svg>
+    Commencer
+  </button>
+</header>
+
+<div class="stepper" aria-hidden="true">
+  <div class="step-tick active">§01 DOC</div>
+  <div class="step-tick">§02 LOCALISATION</div>
+  <div class="step-tick">§03 PROFIL</div>
+  <div class="step-tick">§04 TRAVAILLEURS</div>
+</div>
+
+<main class="sheet">
+
+  <section class="card">
+    <h2><span class="idx">§1</span> Objectif de l'application</h2>
+    <p>Ce système détermine si une installation photovoltaïque est <strong>financièrement et techniquement envisageable</strong> pour votre ménage, puis recherche la configuration la plus adaptée à votre situation socio-économique, votre localisation et les conditions solaires locales.</p>
+    <p>Contrairement à un dimensionnement classique qui part de la liste des appareils à alimenter, le DSAA part de votre situation réelle — revenus, composition du foyer, distance au point d'approvisionnement — pour proposer une installation que vous pouvez raisonnablement financer et exploiter.</p>
+  </section>
+
+  <section class="card">
+    <h2><span class="idx">§2</span> Ce qui vous sera demandé</h2>
+    <ul class="doc-list">
+      <li><strong>Localisation</strong> — l'endroit où vous souhaitez installer le système, puis l'emplacement de votre habitat actuel (deux clics sur une carte).</li>
+      <li><strong>Profil familial</strong> — votre nom, âge, et le nombre de personnes dans le foyer.</li>
+      <li><strong>Travailleurs du ménage</strong> — pour chaque personne qui travaille : son activité et, si vous le souhaitez, son salaire mensuel. Le salaire est facultatif : s'il n'est pas connu, une estimation est utilisée à sa place.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2><span class="idx">§3</span> Limites de l'estimation</h2>
+    <ul class="limits-list">
+      <li>L'indicateur socio-économique calculé est un score <em>modélisé</em>, pas une mesure directe de votre consommation réelle.</li>
+      <li>Les salaires estimés (lorsque non déclarés) proviennent d'une base de référence par métier et peuvent différer de la réalité.</li>
+      <li>Les distances routières et l'irradiation solaire sont des estimations issues de services externes (moteur de routage, données satellitaires).</li>
+      <li>Le résultat final est une recommandation d'aide à la décision — elle doit être vérifiée par un professionnel avant toute installation réelle.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2><span class="idx">§4</span> Conditions d'utilisation</h2>
+    <p class="hint">Les informations saisies (localisation, composition du foyer, revenus) sont utilisées uniquement pour produire votre recommandation. Aucune donnée n'est requise au-delà de ce qui est nécessaire au calcul.</p>
+  </section>
+
+  <div style="text-align:center; margin-top: 2rem;">
+    <button class="btn-primary" onclick="window.location.href='interface.html'">Commencer la saisie →</button>
+  </div>
+
+</main>
+
+<footer class="mentions">
+  Algorithme de Dimensionnement Solaire Adaptatif (DSAA) — v2.0. Outil d'aide à la décision, ne remplace pas l'avis d'un installateur agréé.
+</footer>
+
+</body>
+</html>

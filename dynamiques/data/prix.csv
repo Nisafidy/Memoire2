@@ -1,0 +1,61 @@
+﻿categorie;marque;modele;puissance;tension;capacite_autonomie;duree_vie_estimee;garantie;prix_ariary;statut_disponibilite;type_prix;source;notes
+Panneau photovoltaïque;ZKDIGIMAX;NE03-B0550-01H monocristallin;550 W;;;25-30 ans;;841500;Non précisé;prix local affiche;TED Madagascar;"Prix catalogue ; vérifier stock"
+Panneau photovoltaïque;JA Solar;Module 590 W;590 W;;;25-30 ans;;960000;Non précisé;prix local affiche;Devis Home Power Madagascar;"Prix unitaire de devis ; non kit"
+Batterie LiFePO4;ZKDIGIMAX;NE01-L005;;51.2 V;100 Ah / 5.12 kWh;10-15 ans / 6000+ cycles;10 ans;7344000;Non précisé;prix local affiche;TED Madagascar;"BMS intégré ; modulaire"
+Batterie LiFePO4;MERITSUN;Murale BMS 200 A;;51.2 V;200 Ah / 10.24 kWh;10-15 ans / 6000+ cycles;10 ans;11633333;Non précisé;prix local affiche;Devis Home Power Madagascar;BMS 200 A
+Batterie solaire gel/plomb;Bricodis / Robuste Solar / Altech / Yaki;100 Ah;;12 V;100 Ah / 1.2 kWh nominal;3-5 ans / 500-800 cycles;;747500;Non précisé;prix local affiche;Accio, synthèse marché Madagascar;Capacité utile inférieure à la capacité nominale
+Batterie solaire gel/plomb;Bricodis / Robuste Solar / Altech / Yaki;200 Ah;;12 V;200 Ah / 2.4 kWh nominal;3-5 ans / 500-800 cycles;;1380000;Non précisé;prix local affiche;Accio, synthèse marché Madagascar;Capacité utile inférieure à la capacité nominale
+Batterie solaire AGM/VRLA;Bricodis;100 Ah;;12 V;100 Ah / 1.2 kWh nominal;2-4 ans / 300-500 cycles;;690000;Non précisé;prix local affiche;Accio, synthèse marché Madagascar;Prix publié indicatif
+Batterie solaire AGM/VRLA;Bricodis;150 Ah;;12 V;150 Ah / 1.8 kWh nominal;2-4 ans / 300-500 cycles;;632500;Non précisé;prix local affiche;Accio, synthèse marché Madagascar;"Prix publié indicatif ; vérifier capacité/prix"
+Onduleur hybride / convertisseur-chargeur;ZKDIGIMAX;Convertisseur-chargeur Monophasé 5 kVA;5 kVA;48 V DC / 220 V AC;;10-15 ans;À confirmer;;Non précisé;non publié;TED Madagascar;"Référence catalogue ; demander devis local"
+Onduleur hybride / convertisseur-chargeur;ZKDIGIMAX;Convertisseur-chargeur Monophasé 10 kVA;10 kVA;48 V DC / 220 V AC;;10-15 ans;À confirmer;;Non précisé;non publié;TED Madagascar;"Référence catalogue ; demander devis local"
+Onduleur hybride / convertisseur-chargeur;ZKDIGIMAX;Convertisseur-chargeur Triphasé 10 kVA;10 kVA;48 V DC / 380 V AC;;10-15 ans;À confirmer;;Non précisé;non publié;TED Madagascar;"Référence catalogue ; demander devis local"
+Onduleur hybride / convertisseur-chargeur;ZKDIGIMAX;Convertisseur-chargeur Triphasé 15 kVA;15 kVA;48 V DC / 380 V AC;;10-15 ans;À confirmer;;Non précisé;non publié;TED Madagascar;"Référence catalogue ; demander devis local"
+Onduleur hybride / convertisseur-chargeur;ZKDIGIMAX;Convertisseur-chargeur Triphasé 20 kVA;20 kVA;48 V DC / 380 V AC;;10-15 ans;À confirmer;;Non précisé;non publié;TED Madagascar;"Référence catalogue ; demander devis local"
+Onduleur hybride / convertisseur-chargeur;ZKDIGIMAX;Convertisseur-chargeur Triphasé 30 kVA;30 kVA;48 V DC / 380 V AC;;10-15 ans;À confirmer;;Non précisé;non publié;TED Madagascar;"Référence catalogue ; demander devis local"
+Onduleur hybride / convertisseur-chargeur;ZKDIGIMAX;Convertisseur-chargeur Triphasé 50 kVA;50 kVA;48 V DC / 380 V AC;;10-15 ans;À confirmer;;Non précisé;non publié;TED Madagascar;"Référence catalogue ; demander devis local"
+Micro-onduleur;Enphase;M250;250 W;AC 220 V;;20-25 ans;;1058600;Réapprovisionnement;prix local affiche;Gaia Madagascar;Micro-onduleur par panneau
+Passerelle de monitoring;Enphase;Envoy-S;;;;10+ ans;;1657300;Non précisé;prix local affiche;Gaia Madagascar;Monitoring système
+Passerelle de monitoring;Enphase;Envoy-S Metered;;;;10+ ans;;3315400;Non précisé;prix local affiche;Gaia Madagascar;Monitoring et mesure
+Accessoire micro-onduleur;Enphase;Outil de déconnexion Engage;;;;10+ ans;;48900;En stock;prix local affiche;Gaia Madagascar;
+Accessoire micro-onduleur;Enphase;Embout de terminaison Engage;;;;10+ ans;;97100;Non précisé;prix local affiche;Gaia Madagascar;
+Câble / connectique;Enphase;Câble Engage portrait;;;;20+ ans;;178300;Non précisé;prix local affiche;Gaia Madagascar;Prix par référence/longueur catalogue
+Câble / connectique;Enphase;Câble Engage paysage;;;;20+ ans;;194100;Non précisé;prix local affiche;Gaia Madagascar;Prix par référence/longueur catalogue
+Onduleur réseau;Fronius;Galvo 1.5-1 + Data Manager;1.5 kW;AC 220 V;;15-20 ans;;9032700;Réapprovisionnement;prix local affiche;Gaia Madagascar;Rendement européen 94.5%
+Onduleur réseau;Fronius;Galvo 2.0-1 + Data Manager;2.0 kW;AC 220 V;;15-20 ans;;9238200;Réapprovisionnement;prix local affiche;Gaia Madagascar;
+Onduleur réseau;Fronius;Galvo 2.5-1 + Data Manager;2.5 kW;AC 220 V;;15-20 ans;;9443600;Réapprovisionnement;prix local affiche;Gaia Madagascar;
+Onduleur réseau;Fronius;Galvo 3.1-1 + Data Manager;3.1 kW;AC 220 V;;15-20 ans;;9649000;Réapprovisionnement;prix local affiche;Gaia Madagascar;
+Onduleur réseau;Fronius;Primo 3.0-1;3.0 kW;AC 220 V;;15-20 ans;;10449400;Réapprovisionnement;prix local affiche;Gaia Madagascar;
+Onduleur réseau;Fronius;Primo 3.5-1;3.5 kW;AC 220 V;;15-20 ans;;10878600;Réapprovisionnement;prix local affiche;Gaia Madagascar;
+Onduleur réseau;Fronius;Primo 3.6-1;3.6 kW;AC 220 V;;15-20 ans;;10944600;Réapprovisionnement;prix local affiche;Gaia Madagascar;
+Onduleur réseau;Fronius;Primo 4.0-1;4.0 kW;AC 220 V;;15-20 ans;;11362900;Réapprovisionnement;prix local affiche;Gaia Madagascar;
+Onduleur réseau;Fronius;Primo 4.6-1;4.6 kW;AC 220 V;;15-20 ans;;11946200;Réapprovisionnement;prix local affiche;Gaia Madagascar;
+Onduleur réseau;Fronius;Primo 5.0-1;5.0 kW;AC 220 V;;15-20 ans;;12309300;Réapprovisionnement;prix local affiche;Gaia Madagascar;
+Onduleur réseau;Fronius;Primo 6.0-1;6.0 kW;AC 220 V;;15-20 ans;;13993200;Réapprovisionnement;prix local affiche;Gaia Madagascar;
+Structure et fixation;ZKDIGIMAX;Structure de toiture / support solaire;;;;25+ ans;;;Non précisé;non publié;TED Madagascar;"Prix sur demande ; acheter selon type de toiture"
+Câble photovoltaïque;ZKDIGIMAX;Câble PV rouge/noir;;DC jusqu’à 1000 V;;25+ ans;;;Non précisé;non publié;TED Madagascar;Section à dimensionner : généralement 4 ou 6 mm²
+Connecteur photovoltaïque;MC4 / compatible;Paire de connecteurs MC4;;DC jusqu’à 1000 V;;20+ ans;;;Non précisé;non publié;TED Madagascar;Préférer connecteurs certifiés et compatibles
+Protection DC;ZKDIGIMAX / compatible;Coffret DC : sectionneur, fusible, parafoudre;;DC 600-1000 V;;10-15 ans;;;Non précisé;non publié;TED Madagascar;À dimensionner par chaîne PV et tension Voc
+Protection AC;ZKDIGIMAX / compatible;Coffret AC : disjoncteur, différentiel, parafoudre;;AC 220/380 V;;10-15 ans;;;Non précisé;non publié;TED Madagascar;Dimensionnement par électricien qualifié
+Mise à la terre;Compatible;Piquet, câble de terre, barrette de coupure;;;;25+ ans;;;Non précisé;non publié;Marché local;Élément de sécurité indispensable
+Régulateur de charge;PWM / MPPT;Régulateur solaire;;12/24/48 V;;8-15 ans;;;Non précisé;non publié;Marché local;Un MPPT est nécessaire si pas d’onduleur hybride avec MPPT intégré
+Câble batterie;Compatible;Câble cuivre avec cosses serties;;12/24/48 V;;15+ ans;;;Non précisé;non publié;Marché local;Section dépend du courant et de la longueur
+Commutateur de source;Compatible;Inverseur manuel ou ATS;;AC 220/380 V;;10-15 ans;;;Non précisé;non publié;Marché local;Pour bascule JIRAMA/groupe/solaire
+Accessoire à chiffrer localement;Compatible;Parafoudre DC type 2;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources
+Accessoire à chiffrer localement;Compatible;Parafoudre AC type 2;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources
+Accessoire à chiffrer localement;Compatible;Disjoncteur DC;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources
+Accessoire à chiffrer localement;Compatible;Fusible gPV et porte-fusible;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources
+Accessoire à chiffrer localement;Compatible;Sectionneur DC;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources
+Accessoire à chiffrer localement;Compatible;Disjoncteur différentiel AC;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources
+Accessoire à chiffrer localement;Compatible;Coffret de chaîne PV;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources
+Accessoire à chiffrer localement;Compatible;Coffret AC;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources
+Accessoire à chiffrer localement;Compatible;Rails aluminium;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources
+Accessoire à chiffrer localement;Compatible;Crochets toiture;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources
+Accessoire à chiffrer localement;Compatible;Brides milieu;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources
+Accessoire à chiffrer localement;Compatible;Brides de fin;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources
+Accessoire à chiffrer localement;Compatible;Visserie inox;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources
+Accessoire à chiffrer localement;Compatible;Gaine UV;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources
+Accessoire à chiffrer localement;Compatible;Cosses batterie;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources
+Accessoire à chiffrer localement;Compatible;Étiquettes de sécurité;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources
+Accessoire à chiffrer localement;Compatible;Compteur d’énergie;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources
+Accessoire à chiffrer localement;Compatible;Module Wi-Fi / Ethernet;;;;Variable;;;Non précisé;non publié;À demander aux fournisseurs Madagascar;Ligne volontairement sans prix : aucun tarif local public vérifié dans les sources

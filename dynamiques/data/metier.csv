@@ -1,0 +1,90 @@
+secteur,metier,salaire_min_ariary,salaire_max_ariary,salaire_moyen_ariary,type
+General,Salaire minimum non agricole,262680,262680,262680,observed
+General,Salaire minimum agricole,266500,266500,266500,observed
+General,Salaire moyen national estimé,196359,196359,196359,observed
+Agriculture,Ouvrier agricole,150000,300000,225000,approx
+Agriculture,Chef de culture,300000,700000,500000,approx
+Agriculture,Responsable d'exploitation agricole,500000,1200000,850000,approx
+Industrie,Ouvrier non qualifié,150000,250000,200000,approx
+Industrie,Ouvrier qualifié,250000,500000,375000,approx
+Industrie,Superviseur d'atelier,400000,800000,600000,approx
+Industrie,Technicien de maintenance,300000,700000,500000,approx
+Industrie,Ingénieur production,700000,1500000,1100000,approx
+BTP,Maine d'oeuvre,150000,250000,200000,approx
+BTP,Maçon,200000,450000,325000,approx
+BTP,Électricien bâtiment,250000,600000,425000,approx
+BTP,Plombier,250000,600000,425000,approx
+BTP,Chef de chantier,500000,1200000,850000,approx
+BTP,Conducteur de travaux,800000,1800000,1300000,approx
+Transport,Chauffeur,250000,600000,425000,approx
+Transport,Livreur,200000,450000,325000,approx
+Transport,Receveur / assistant transport,180000,350000,265000,approx
+Transport,Responsable logistique,600000,1500000,1050000,approx
+Commerce,Vendeur,200000,450000,325000,approx
+Commerce,Caissier,200000,400000,300000,approx
+Commerce,Commercial terrain,300000,800000,550000,approx
+Commerce,Chef de vente,600000,1500000,1050000,approx
+Commerce,Responsable commercial,900000,2500000,1700000,approx
+Hôtellerie,Serveur,438617,995114,716866,observed
+Hôtellerie,Barman,250000,600000,425000,approx
+Hôtellerie,Réceptionniste,250000,600000,425000,approx
+Hôtellerie,Chef de réception,500000,1200000,850000,approx
+Hôtellerie,Responsable hôtelier,800000,2000000,1400000,approx
+Restauration,Cuisinier,250000,700000,475000,approx
+Restauration,Aide-cuisinier,180000,300000,240000,approx
+Restauration,Chef cuisinier,700000,2000000,1350000,approx
+Administration,Agent administratif,300000,600000,450000,approx
+Administration,Secrétaire,250000,500000,375000,approx
+Administration,Comptable,400000,1000000,700000,approx
+Administration,Chef comptable,700000,2000000,1350000,observed
+Administration,Assistant de direction,500000,1200000,850000,approx
+Administration,Directeur administratif,1500000,4000000,2750000,approx
+Éducation,Instituteur public,200000,400000,300000,approx
+Éducation,Enseignant privé,200000,600000,400000,observed
+Éducation,Professeur de lycée,300000,800000,550000,approx
+Éducation,Formateur,400000,1000000,700000,approx
+Santé,Aide-soignant,250000,500000,375000,approx
+Santé,Infirmier,300000,700000,500000,approx
+Santé,Médecin généraliste,500000,1500000,1000000,approx
+Santé,Médecin spécialiste,1000000,3000000,2000000,approx
+Santé,Pharmacien,400000,1000000,700000,approx
+Santé,Dentiste,74000,250000,162000,observed
+Technologie,Développeur junior,1500000,3000000,2250000,observed
+Technologie,Développeur confirmé,3000000,6000000,4500000,observed
+Technologie,Développeur senior,5000000,10000000,7500000,observed
+Technologie,Data Analyst,1800000,5000000,3400000,observed
+Technologie,Data Scientist,2500000,13000000,7250000,observed
+Technologie,Ingénieur DevOps / Cloud,2000000,12000000,7000000,observed
+Technologie,Chef de projet IT,1800000,9000000,5400000,observed
+Technologie,Product Manager,2200000,11000000,6600000,observed
+Technologie,UI Designer,1200000,6000000,3600000,observed
+Technologie,UX Designer,1500000,7500000,4500000,observed
+Technologie,Community Manager,800000,4000000,2400000,observed
+Technologie,SEO / SEA Specialist,1200000,6500000,3850000,observed
+Finance,Caissier banque,250000,500000,375000,approx
+Finance,Comptable bancaire,500000,1200000,850000,approx
+Finance,Analyste financier,70000,3000000,1535000,observed
+Finance,Auditeur,78000,3000000,1539000,observed
+Finance,Trader,110000,5000000,2555000,observed
+Finance,Gestionnaire de crédit,72000,2500000,1286000,observed
+Finance,Chef comptable,76000,4000000,2038000,observed
+Fonction publique,Agent public débutant,200000,400000,300000,approx
+Fonction publique,Cadre administratif public,400000,800000,600000,approx
+Fonction publique,Cadre supérieur public,800000,2000000,1400000,approx
+Sécurité,Garde de sécurité,180000,300000,240000,approx
+Sécurité,Agent de sécurité confirmé,250000,450000,350000,approx
+Sécurité,Responsable sécurité,500000,1200000,850000,approx
+Artisanat,Couturier,180000,500000,340000,approx
+Artisanat,Menuisier,200000,600000,400000,approx
+Artisanat,Coiffeur,180000,500000,340000,approx
+Artisanat,Mécanicien,250000,700000,475000,approx
+Communication,Journaliste,300000,900000,600000,approx
+Communication,Rédacteur web,250000,800000,525000,approx
+Communication,Graphiste,300000,900000,600000,approx
+Communication,Photographe,250000,1000000,625000,approx
+Immobilier,Agent immobilier,300000,1000000,650000,approx
+Immobilier,Gestionnaire immobilier,500000,1500000,1000000,approx
+Immobilier,Responsable patrimoine,800000,2500000,1650000,approx
+NGO_Association,Chargé de projet,400000,1000000,700000,approx
+NGO_Association,Coordinateur de programme,700000,1800000,1250000,approx
+NGO_Association,Directeur de programme,1200000,3000000,2100000,approx

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSAA — Saisie</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+
+<header class="blueprint-header">
+  <span class="dossier-tag">DSAA — Dossier n° 001 · v2.0</span>
+  <h1>Saisie du dossier</h1>
+  <p id="step-caption">Étape 1 sur 4 — Indiquez l'emplacement de l'installation, puis celui de votre habitat.</p>
+</header>
+
+<div class="stepper" id="stepper">
+  <div class="step-tick" data-step="1">§01 LOCALISATION</div>
+  <div class="step-tick" data-step="2">§02 PROFIL</div>
+  <div class="step-tick" data-step="3">§03 TRAVAILLEURS</div>
+  <div class="step-tick" data-step="4">§04 RÉCAPITULATIF</div>
+</div>
+
+<main class="sheet">
+
+  <!-- ÉTAPE 1 — LOCALISATION -->
+  <section class="step-panel" id="panel-1">
+    <div class="card">
+      <h2><span class="idx">§1</span> Localisation</h2>
+      <p class="hint">Premier clic sur la carte : l'endroit où vous souhaitez installer le système (objectif). Deuxième clic : l'emplacement actuel de votre habitat.</p>
+      <div id="map"></div>
+      <div class="coord-pair">
+        <div class="coord-chip" id="chip-objectif">
+          <span class="label">Objectif (installation)</span>
+          <span id="coord-objectif">— non défini —</span>
+        </div>
+        <div class="coord-chip" id="chip-habitat">
+          <span class="label">Habitat</span>
+          <span id="coord-habitat">— non défini —</span>
+        </div>
+      </div>
+      <div class="town-preview" id="town-preview" style="display:none;"></div>
+      <button class="ghost-btn" id="reset-map" type="button" style="margin-top:0.75rem;">Réinitialiser les points</button>
+    </div>
+  </section>
+
+  <!-- ÉTAPE 2 — PROFIL FAMILIAL -->
+  <section class="step-panel" id="panel-2">
+    <div class="card">
+      <h2><span class="idx">§2</span> Profil familial</h2>
+      <div class="field">
+        <label for="f-name">Nom complet</label>
+        <input type="text" id="f-name" placeholder="Ex. Rakoto Jean">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-age">Âge</label>
+          <input type="number" id="f-age" min="1" max="110" placeholder="Ex. 34">
+        </div>
+        <div class="field">
+          <label for="f-nbr">Nombre de personnes dans le foyer</label>
+          <input type="number" id="f-nbr" min="1" max="30" placeholder="Ex. 5">
+        </div>
+      </div>
+      <p class="hint" id="age-hint"></p>
+    </div>
+  </section>
+
+  <!-- ÉTAPE 3 — TRAVAILLEURS -->
+  <section class="step-panel" id="panel-3">
+    <div class="card">
+      <h2><span class="idx">§3</span> Travailleurs du ménage</h2>
+      <p class="hint">Ajoutez chaque personne du foyer qui travaille. Une personne peut déclarer plusieurs activités.</p>
+      <div id="workers-container"></div>
+      <button class="ghost-btn" id="add-worker" type="button">+ Ajouter un travailleur</button>
+    </div>
+  </section>
+
+  <!-- ÉTAPE 4 — RÉCAPITULATIF -->
+  <section class="step-panel" id="panel-4">
+    <div class="card">
+      <h2><span class="idx">§4</span> Récapitulatif</h2>
+      <p class="hint">Voici les données collectées, prêtes à être transmises aux modules suivants (score socio-économique, faisabilité financière, dimensionnement).</p>
+      <pre class="recap" id="recap-json"></pre>
+      <div style="margin-top:0.9rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+        <button class="btn-secondary" id="download-json" type="button">Télécharger le JSON</button>
+        <button class="btn-secondary" id="copy-json" type="button">Copier</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="nav-buttons">
+    <button class="btn-secondary" id="btn-prev" type="button">← Précédent</button>
+    <button class="btn-primary" id="btn-next" type="button">Suivant →</button>
+  </div>
+
+</main>
+
+<footer class="mentions">
+  Étape en cours — les données ne sont conservées que dans votre navigateur tant que ce dossier n'a pas été transmis.
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/csv.js"></script>
+<script src="js/locationService.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
