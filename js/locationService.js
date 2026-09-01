@@ -29,8 +29,8 @@ const LOCATION_CONFIG = {
     nord: 125
   },
   
-  // Frais de séjour (à ajouter au coût transport aller-retour)
-  stay_fees: 50000,                          // Ar
+  // Frais de séjour minimum (à ajouter au coût transport aller-retour, un séjour minimum de 2jours)
+  stay_fees: 13500,                          // Ar
   
   // Paramètres système
   earth_radius: 6371,                        // km

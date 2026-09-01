@@ -837,7 +837,7 @@ le ménage ne dispose pas d'une capacité mensuelle théorique suffisante pour f
 
 Le système peut alors déclarer l'installation non recommandée.
 
----
+---i
 
 # 25. MODULE 6 — FAISABILITÉ FINANCIÈRE
 
