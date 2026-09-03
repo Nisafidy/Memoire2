@@ -276,33 +276,161 @@ function findMetierReference(work) {
 }
 
 // ================================================================
-// ESTIMATION DU SALAIRE
+// APPLICATION DE L'ESTIMATION DE SALAIRE (AVEC TRACABILITÉ)
 // ================================================================
 
-function applyEstimatedSalary(activity) {
-  const match = findMetierReference(activity.work);
+function applyEstimatedSalary(act) {
+  const match = findMetierReference(act.work);
 
-  // Aucun métier reconnu
-  if (!match) {
-    activity.salary = null;
-    activity.salary_reference = null;
-    activity.salary_match_type = null;
-    activity.salary_match_confidence = 0;
+  // Aucun métier correspondant OU salaire de référence invalide
+  if (
+    !match ||
+    !Number.isFinite(match.salaire_moyen_ariary) ||
+    match.salaire_moyen_ariary <= 0
+  ) {
+    act.salary = null;
+    act.source = "unresolved";
+    act.salary_reference = match?.reference || null;
+    act.salary_match_type = match?.match_type || null;
+    act.salary_match_confidence = match?.confidence || 0;
 
     return false;
   }
 
-  // Métier reconnu
-  activity.salary = match.salaire_moyen_ariary;
+  // Estimation trouvée
+  act.salary = match.salaire_moyen_ariary;
+  act.source = "estimated";
+  act.salary_reference = match.reference;
+  act.salary_match_type = match.match_type;
+  act.salary_match_confidence = match.confidence;
 
-  activity.salary_reference = match.reference;
-
-  activity.salary_match_type = match.match_type;
-
-  activity.salary_match_confidence = match.confidence;
-
-  return activity.salary !== null;
+  return true;
 }
+
+// ================================================================
+// ENRICHISSEMENT AUTOMATIQUE DE METIER.CSV
+// ================================================================
+
+async function enrichMetierReference(activity) {
+
+  try {
+
+    // ==============================================================
+    // VÉRIFICATION DES DONNÉES
+    // ==============================================================
+
+    const metier = String(
+      activity.work ?? ""
+    ).trim();
+
+    const salaire = Number(
+      activity.salary
+    );
+
+    if (!metier) {
+      console.warn(
+        "⚠️ Enrichissement annulé : métier vide."
+      );
+
+      return false;
+    }
+
+    if (
+      !Number.isFinite(salaire) ||
+      salaire <= 0
+    ) {
+      console.warn(
+        "⚠️ Enrichissement annulé : salaire invalide."
+      );
+
+      return false;
+    }
+
+    // ==============================================================
+    // ENVOI AU PHP
+    // ==============================================================
+
+    const response = await fetch(
+      "enrichir_metier.php",
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
+
+        body: JSON.stringify({
+          metier: metier,
+          salaire: salaire,
+          secteur:
+            activity.secteur ??
+            "Non classé"
+        })
+      }
+    );
+
+    // ==============================================================
+    // RÉCUPÉRATION DE LA RÉPONSE
+    // ==============================================================
+
+    const text =
+      await response.text();
+
+    console.log(
+      "Réponse PHP :",
+      text
+    );
+
+    let result;
+
+    try {
+
+      result =
+        JSON.parse(text);
+
+    } catch (jsonError) {
+
+      console.error(
+        "⚠️ Réponse PHP invalide :",
+        text
+      );
+
+      return false;
+    }
+
+    // ==============================================================
+    // TRAITEMENT DU RÉSULTAT
+    // ==============================================================
+
+    if (!result.success) {
+
+      console.warn(
+        "⚠️",
+        result.message
+      );
+
+      return false;
+    }
+
+    console.log(
+      "✓ metier.csv enrichi :",
+      result.message
+    );
+
+    return true;
+
+  } catch (error) {
+
+    console.error(
+      "⚠️ Erreur enrichissement metier.csv :",
+      error
+    );
+
+    return false;
+  }
+}
+
 
 // ================================================================
 // CHARGEMENT DES DONNÉES DE RÉFÉRENCE
@@ -926,6 +1054,7 @@ function createEmptyActivity() {
     // null = aucune décision prise
     // declared = salaire fourni par utilisateur
     // estimated = salaire issu de metier.csv
+    // unresolved = métier non reconnu
     source: null,
 
     salary_reference: null,
@@ -1301,28 +1430,25 @@ function renderWorkers() {
             "blur",
             () => {
 
-              if (
-                !activity.work.trim()
-              ) {
+              // Si le champ métier est vide, on réinitialise tout
+              if (!activity.work.trim()) {
+                activity.salary = null;
+                activity.source = null;
+                activity.salary_reference = null;
+                activity.salary_match_type = null;
+                activity.salary_match_confidence = 0;
+
+                renderSalarySourceTag(worker.id, activityIndex);
+                renderMatchInfo(worker.id, activityIndex);
+                updateNextButtonState();
+
                 return;
               }
 
-              /**
-               * Si aucun salaire n'a été déclaré,
-               * on cherche automatiquement une référence
-               * dans metier.csv.
-               */
-              if (
-                activity.source !==
-                "declared"
-              ) {
-
-                activity.source =
-                  "estimated";
-
-                applyEstimatedSalary(
-                  activity
-                );
+              // Si l'utilisateur n'a pas déclaré de salaire,
+              // on tente l'estimation.
+              if (activity.source !== "declared") {
+                applyEstimatedSalary(activity);
               }
 
               state.familyData = null;
@@ -1483,7 +1609,7 @@ function renderWorkers() {
 
           salaryInput.addEventListener(
             "blur",
-            () => {
+            async () => {
 
               /**
                * Si aucun salaire n'est déclaré
@@ -1497,10 +1623,25 @@ function renderWorkers() {
                   "declared"
               ) {
 
-                activity.source =
-                  "estimated";
-
                 applyEstimatedSalary(
+                  activity
+                );
+              }
+
+              /*
+              * Si le salaire a été déclaré
+              * manuellement par l'utilisateur,
+              * on utilise cette donnée pour
+              * enrichir metier.csv.
+              */
+              if (
+                activity.source === "declared" &&
+                Number.isFinite(activity.salary) &&
+                activity.salary > 0 &&
+                activity.work.trim()
+              ) {
+
+                await enrichMetierReference(
                   activity
                 );
               }
@@ -1520,6 +1661,10 @@ function renderWorkers() {
               updateNextButtonState();
             }
           );
+
+          // ======================================================
+          // AJOUT DU CHAMP SALAIRE (CORRECTION)
+          // ======================================================
 
           salaryField.appendChild(
             salaryInput
@@ -1832,39 +1977,44 @@ function renderSalarySourceTag(
     return;
   }
 
-  // Aucun salaire défini
+  // Aucun métier / aucune source
   if (!activity.source) {
-
     element.innerHTML = `
       <span class="salary-source none">
         — non défini
       </span>
     `;
-
     return;
   }
 
   // Salaire estimé
-  if (
-    activity.source ===
-    "estimated"
-  ) {
-
+  if (activity.source === "estimated") {
     element.innerHTML = `
       <span class="salary-source estimated">
         estimé (metier.csv)
       </span>
     `;
-
     return;
   }
 
   // Salaire déclaré
-  element.innerHTML = `
-    <span class="salary-source declared">
-      déclaré
-    </span>
-  `;
+  if (activity.source === "declared") {
+    element.innerHTML = `
+      <span class="salary-source declared">
+        déclaré
+      </span>
+    `;
+    return;
+  }
+
+  // Métier trouvé/impossible à estimer
+  if (activity.source === "unresolved") {
+    element.innerHTML = `
+      <span class="salary-source unresolved">
+        ⚠️ salaire requis
+      </span>
+    `;
+  }
 }
 
 // ================================================================
@@ -1904,51 +2054,35 @@ function renderMatchInfo(
   }
 
   // --------------------------------------------------------------
-  // CORRESPONDANCE TROUVÉE
+  // MÉTIER NON ENCORE RENSEIGNÉ
   // --------------------------------------------------------------
+  if (!activity.work || !activity.work.trim()) {
+    element.innerHTML = "";
+    return;
+  }
 
-  if (
-    activity.source ===
-      "estimated" &&
-    activity.salary_match_type
-  ) {
-
+  // --------------------------------------------------------------
+  // ESTIMATION TROUVÉE
+  // --------------------------------------------------------------
+  if (activity.source === "estimated" && activity.salary !== null) {
     const typeLabels = {
-
-      exact:
-        "Correspondance exacte",
-
-      alias:
-        "Alias connu",
-
-      token:
-        "Rapprochement par mots"
+      exact: "Correspondance exacte",
+      alias: "Alias connu",
+      token: "Rapprochement par mots"
     };
 
     const typeLabel =
-      typeLabels[
-        activity.salary_match_type
-      ] ||
-      activity.salary_match_type;
-
-    const confidence =
-      Math.round(
-        (
-          activity.salary_match_confidence ||
-          0
-        ) * 100
-      );
+      typeLabels[activity.salary_match_type] ||
+      activity.salary_match_type ||
+      "Correspondance";
 
     element.innerHTML = `
       <span class="match-badge">
-        Réf. :
-        <strong>
-          ${activity.salary_reference || "?"}
-        </strong>
-
+        Réf. : <strong>${activity.salary_reference || "?"}</strong>
         · ${typeLabel}
-
-        · confiance ${confidence}%
+        · confiance ${Math.round(
+          (activity.salary_match_confidence || 0) * 100
+        )}%
       </span>
     `;
 
@@ -1956,26 +2090,44 @@ function renderMatchInfo(
   }
 
   // --------------------------------------------------------------
-  // MÉTIER NON RECONNU
+  // SALAIRE DÉCLARÉ PAR L'UTILISATEUR
   // --------------------------------------------------------------
-
   if (
-    activity.source ===
-      "estimated" &&
-    activity.salary === null
+    activity.source === "declared" &&
+    Number.isFinite(activity.salary) &&
+    activity.salary > 0
   ) {
+    element.innerHTML = `
+      <span class="match-badge">
+        Salaire déclaré par l'utilisateur
+      </span>
+    `;
 
+    return;
+  }
+
+  // --------------------------------------------------------------
+  // MÉTIER NON RECONNU / SALAIRE NON ESTIMABLE
+  // --------------------------------------------------------------
+  if (activity.source === "unresolved") {
     element.innerHTML = `
       <span class="match-badge warning">
-        ⚠️ Métier non reconnu —
-        salaire non estimé
+        ⚠️ Salaire non estimable pour ce métier.
+        Saisissez le salaire mensuel ou supprimez cette activité.
       </span>
     `;
 
     return;
   }
 
-  element.innerHTML = "";
+  // --------------------------------------------------------------
+  // SALAIRE MANQUANT
+  // --------------------------------------------------------------
+  element.innerHTML = `
+    <span class="match-badge warning">
+      ⚠️ Veuillez saisir un salaire ou activer l'estimation.
+    </span>
+  `;
 }
 
 // ================================================================
@@ -2002,88 +2154,71 @@ if (addWorkerButton) {
 function stepIsValid(step) {
 
   // --------------------------------------------------------------
-  // ÉTAPE 1
+  // ÉTAPE 1 — Localisation
   // --------------------------------------------------------------
 
   if (step === 1) {
-
-    return Boolean(
-      state.objectif &&
-      state.habitat
-    );
+    return !!(state.objectif && state.habitat);
   }
 
   // --------------------------------------------------------------
-  // ÉTAPE 2
+  // ÉTAPE 2 — Profil familial
   // --------------------------------------------------------------
 
   if (step === 2) {
-
     return (
-
-      state.family.name
-        .trim()
-        .length > 0
-
-      &&
-
-      Number.isFinite(
-        state.family.age
-      )
-
-      &&
-
-      state.family.age > 0
-
-      &&
-
-      Number.isFinite(
-        state.family.family_nbr
-      )
-
-      &&
-
+      state.family.name.trim().length > 0 &&
+      Number.isFinite(state.family.age) &&
+      state.family.age > 0 &&
+      Number.isFinite(state.family.family_nbr) &&
       state.family.family_nbr > 0
     );
   }
 
   // --------------------------------------------------------------
-  // ÉTAPE 3
+  // ÉTAPE 3 — Travailleurs et revenus
   // --------------------------------------------------------------
 
   if (step === 3) {
+    // Il faut au moins un travailleur
+    if (state.family.workers.length === 0) {
+      return false;
+    }
 
-    return (
+    // Chaque travailleur doit avoir un rôle
+    // et chaque activité doit être complètement résolue.
+    return state.family.workers.every((worker) => {
+      if (!worker.role) {
+        return false;
+      }
 
-      state.family.workers.length > 0
-
-      &&
-
-      state.family.workers.every(
-        (worker) => {
-
-          if (!worker.role) {
-            return false;
-          }
-
-          if (
-            !Array.isArray(
-              worker.activities
-            ) ||
-            worker.activities.length === 0
-          ) {
-            return false;
-          }
-
-          return worker.activities.every(
-            (activity) =>
-              activity.work &&
-              activity.work.trim().length > 0
-          );
+      return worker.activities.every((activity) => {
+        // Une activité sans métier n'est pas valide
+        if (!activity.work || !activity.work.trim()) {
+          return false;
         }
-      )
-    );
+
+        // Un salaire null est toujours interdit
+        if (!Number.isFinite(activity.salary) || activity.salary <= 0) {
+          return false;
+        }
+
+        // Seules ces deux sources sont considérées comme valides
+        if (
+          activity.source !== "declared" &&
+          activity.source !== "estimated"
+        ) {
+          return false;
+        }
+
+        return true;
+      });
+    });
   }
+
+  // --------------------------------------------------------------
+  // ÉTAPE 4
+  // --------------------------------------------------------------
 
   return true;
 }
