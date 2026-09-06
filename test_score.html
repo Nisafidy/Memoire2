@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Module 4</title>
+</head>
+
+<body>
+
+<h1>Test du modèle ML</h1>
+
+<button id="test">Tester le score</button>
+
+<pre id="result"></pre>
+
+<script>
+
+document.getElementById("test").addEventListener("click", async () => {
+
+    const resultElement = document.getElementById("result");
+
+    try {
+
+        const response = await fetch("calculer_score.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                salaire_mensuel: 350000,
+                hhmilieu2: "Urbain",
+                hhreg: "Analamanga",
+                q4a_02: "Oui"
+            })
+        });
+
+        const result = await response.json();
+
+        console.log(result);
+
+        resultElement.textContent =
+            JSON.stringify(result, null, 2);
+
+    } catch (error) {
+
+        console.error(error);
+
+        resultElement.textContent =
+            "Erreur : " + error.message;
+    }
+
+});
+
+</script>
+
+</body>
+</html>
