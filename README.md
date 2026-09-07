@@ -13,7 +13,7 @@ donc servir le dossier via un petit serveur local :
 
 ```bash
 cd dsaa
-python -m http.server 8000
+php -S localhost:8000
 ```
 
 Puis ouvrir : `http://localhost:14464/documentation.html`

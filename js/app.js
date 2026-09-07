@@ -2634,6 +2634,75 @@ async function buildRecapWithLocationData() {
     }
   }
 
+  // --------------------------------------------------------------
+  // MODULE 4 — CALCUL DU SCORE
+  // --------------------------------------------------------------
+
+  const habitatNearestTown =
+    findNearestTown(
+      state.habitat,
+      villes
+    );
+
+  console.log(
+    "✓ Habitat — ville la plus proche :",
+    habitatNearestTown
+  );
+
+  const worker =
+    state.familyData.workers[0];
+
+  const salary =
+    worker.salary[0];
+
+  const predictionData = {
+    salaire_mensuel: salary,
+    hhmilieu2: habitatNearestTown.zone_type,
+    hhreg: habitatNearestTown.region,
+    q4a_02: "Non"
+  };
+
+  console.log(
+    "→ Données envoyées à calculer_score.php :",
+    predictionData
+  );
+
+  try {
+
+    const response =
+      await fetch(
+        "calculer_score.php",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body:
+            JSON.stringify(
+              predictionData
+            )
+        }
+      );
+
+    const result =
+      await response.json();
+
+    console.log(
+      "✓ Score individuel :",
+      result
+    );
+
+  } catch (e) {
+
+    console.error(
+      "✗ Erreur calcul du score :",
+      e
+    );
+  }
+
   buildRecap();
 }
 

@@ -126,6 +126,7 @@ function findNearestTown(objectif, villes) {
     level: Number(nearest.level) || 3,
     priceCoeff: Number(nearest.priceCoeff) || 1.0,
     region: nearest.region || "",
+    zone_type: nearest.zone_type || "",
     
     // Distance calculée
     straight_distance: bestDistance,
@@ -273,6 +274,7 @@ async function buildLocationData(state, villes) {
 
   // 1. Trouver la ville de référence
   const nearestTown = findNearestTown(state.objectif, villes);
+  const habitatNearestTown = findNearestTown(state.habitat, villes);
 
   // 2. Calculer le transport
   const transportData = calculateTransportCost(
