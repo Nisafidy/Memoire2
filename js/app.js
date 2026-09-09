@@ -35,6 +35,12 @@ const state = {
   // Module 3
   familyData: null,
 
+  // Module 5
+  financeData: null,
+
+  // Module 6
+  dimensioningData: null,
+
   family: {
     name: "",
     age: null,
@@ -308,6 +314,37 @@ function applyEstimatedSalary(act) {
 }
 
 // ================================================================
+// RÉSOLUTION DU LIBELLÉ "metier_trouve" (FEATURE ML)
+// ================================================================
+
+/**
+ * Détermine le libellé de métier à envoyer au modèle ML
+ * (feature `metier_trouve`), INDÉPENDAMMENT du fait qu'un
+ * salaire ait été déclaré manuellement ou estimé.
+ *
+ * On réutilise findMetierReference() pour profiter de la
+ * correspondance exacte / alias / tokens, et on renvoie le
+ * libellé D'ORIGINE (avec casse et accents), tel que présent
+ * dans metier.csv et utilisé à l'entraînement du modèle.
+ *
+ * Si aucune correspondance fiable n'est trouvée, on retombe
+ * sur le texte brut saisi par l'utilisateur : le pipeline ML
+ * traitera alors cette valeur comme une catégorie inconnue
+ * (encodage ignoré) plutôt que de faire échouer la prédiction.
+ */
+function resolveMetierTrouve(work) {
+  const match = findMetierReference(work);
+
+  if (match && match.label) {
+    return match.label;
+  }
+
+  const trimmed = (work || "").toString().trim();
+
+  return trimmed || null;
+}
+
+// ================================================================
 // ENRICHISSEMENT AUTOMATIQUE DE METIER.CSV
 // ================================================================
 
@@ -466,6 +503,10 @@ async function loadReferenceData() {
       );
 
       metierIndex.set(key, {
+
+        // Libellé d'origine (casse/accents), tel qu'utilisé
+        // pour entraîner le modèle (feature `metier_trouve`).
+        label: rawName,
 
         secteur: row.secteur || null,
 
@@ -1059,7 +1100,14 @@ function createEmptyActivity() {
 
     salary_reference: null,
     salary_match_type: null,
-    salary_match_confidence: 0
+    salary_match_confidence: 0,
+
+    // Libellé "propre" du métier (casse/accents d'origine),
+    // utilisé comme feature `metier_trouve` par le modèle ML.
+    metier_trouve: null,
+
+    // Score individuel calculé par calculer_score.php pour CETTE activité.
+    scoreIndividuel: null
   };
 }
 
@@ -1381,6 +1429,14 @@ function renderWorkers() {
                 newWork;
 
               /**
+               * Le métier change : le libellé ML et le score
+               * qui en dépendent ne sont plus valides tant que
+               * le champ n'a pas été re-résolu (au blur).
+               */
+              activity.metier_trouve = null;
+              activity.scoreIndividuel = null;
+
+              /**
                * Si le métier change,
                * une ancienne estimation n'est plus fiable.
                *
@@ -1437,6 +1493,8 @@ function renderWorkers() {
                 activity.salary_reference = null;
                 activity.salary_match_type = null;
                 activity.salary_match_confidence = 0;
+                activity.metier_trouve = null;
+                activity.scoreIndividuel = null;
 
                 renderSalarySourceTag(worker.id, activityIndex);
                 renderMatchInfo(worker.id, activityIndex);
@@ -1450,6 +1508,15 @@ function renderWorkers() {
               if (activity.source !== "declared") {
                 applyEstimatedSalary(activity);
               }
+
+              /**
+               * Le libellé `metier_trouve` (feature ML) est résolu
+               * indépendamment de la source du salaire : même si
+               * l'utilisateur déclare son salaire manuellement, le
+               * modèle a quand même besoin du métier normalisé.
+               */
+              activity.metier_trouve =
+                resolveMetierTrouve(activity.work);
 
               state.familyData = null;
 
@@ -1546,6 +1613,9 @@ function renderWorkers() {
 
                 activity.salary_match_confidence =
                   0;
+
+                activity.scoreIndividuel =
+                  null;
               }
 
               // --------------------------------------------------
@@ -1587,6 +1657,10 @@ function renderWorkers() {
                   0;
               }
 
+              // Le salaire change : le score dépendant doit être
+              // recalculé à la prochaine étape de récapitulatif.
+              activity.scoreIndividuel = null;
+
               state.familyData = null;
 
               renderSalarySourceTag(
@@ -1626,6 +1700,20 @@ function renderWorkers() {
                 applyEstimatedSalary(
                   activity
                 );
+              }
+
+              /**
+               * Filet de sécurité : si le libellé `metier_trouve`
+               * n'a pas encore été résolu (ex. l'utilisateur a
+               * rempli le salaire avant de quitter le champ métier),
+               * on le résout maintenant.
+               */
+              if (
+                !activity.metier_trouve &&
+                activity.work.trim()
+              ) {
+                activity.metier_trouve =
+                  resolveMetierTrouve(activity.work);
               }
 
               /*
@@ -1712,6 +1800,9 @@ function renderWorkers() {
                 applyEstimatedSalary(
                   activity
                 );
+
+                activity.metier_trouve =
+                  resolveMetierTrouve(activity.work);
               }
 
               // --------------------------------------------------
@@ -1740,6 +1831,8 @@ function renderWorkers() {
                 activity.salary_match_confidence =
                   0;
               }
+
+              activity.scoreIndividuel = null;
 
               state.familyData = null;
 
@@ -2471,6 +2564,20 @@ function buildOutputPayload() {
       state.familyData,
 
     // ------------------------------------------------------------
+    // MODULE 5 — CAPACITÉ FINANCIÈRE
+    // ------------------------------------------------------------
+
+    financeData:
+      state.financeData,
+
+    // ------------------------------------------------------------
+    // MODULE 6 — FAISABILITÉ FINANCIÈRE
+    // ------------------------------------------------------------
+
+    dimensioningData:
+      state.dimensioningData,
+
+    // ------------------------------------------------------------
     // DONNÉES FAMILIALES BRUTES / NORMALISÉES
     // ------------------------------------------------------------
 
@@ -2526,6 +2633,21 @@ function buildOutputPayload() {
               worker.activities.map(
                 (activity) =>
                   activity.salary_match_confidence
+              ),
+
+            // Libellé métier envoyé au modèle ML pour chaque activité
+            metier_trouve:
+              worker.activities.map(
+                (activity) =>
+                  activity.metier_trouve
+              ),
+
+            // Score individuel calculé par calculer_score.php
+            // pour chaque activité (aligné sur work/salary/metier_trouve)
+            scoreIndividuel:
+              worker.activities.map(
+                (activity) =>
+                  activity.scoreIndividuel
               )
           })
         )
@@ -2649,58 +2771,137 @@ async function buildRecapWithLocationData() {
     habitatNearestTown
   );
 
-  const worker =
-    state.familyData.workers[0];
+  /**
+   * On calcule un score individuel POUR CHAQUE ACTIVITÉ de
+   * CHAQUE TRAVAILLEUR (et non plus uniquement pour la première
+   * activité du premier travailleur).
+   *
+   * Chaque appel repose sur `state.family.workers[*].activities[*]`
+   * (la saisie brute du Module 1), seule source qui connaît le
+   * libellé `metier_trouve` résolu à l'étape précédente.
+   *
+   * Les appels sont faits séquentiellement (et non en parallèle)
+   * car chaque requête à calculer_score.php démarre un processus
+   * Python qui recharge le pipeline ML : les lancer tous en même
+   * temps solliciterait inutilement le serveur.
+   */
+  for (const worker of state.family.workers) {
 
-  const salary =
-    worker.salary[0];
+    for (const activity of worker.activities) {
 
-  const predictionData = {
-    salaire_mensuel: salary,
-    hhmilieu2: habitatNearestTown.zone_type,
-    hhreg: habitatNearestTown.region,
-    q4a_02: "Non"
-  };
+      const hasWork =
+        activity.work && activity.work.trim();
 
-  console.log(
-    "→ Données envoyées à calculer_score.php :",
-    predictionData
-  );
+      const hasSalary =
+        Number.isFinite(activity.salary) &&
+        activity.salary > 0;
 
-  try {
+      // Rien à envoyer pour cette activité : on ignore.
+      if (!hasWork || !hasSalary) {
+        activity.scoreIndividuel = null;
+        continue;
+      }
 
-    const response =
-      await fetch(
-        "calculer_score.php",
-        {
-          method: "POST",
+      // Filet de sécurité si metier_trouve n'a pas pu être résolu
+      // plus tôt dans le parcours utilisateur.
+      if (!activity.metier_trouve) {
+        activity.metier_trouve =
+          resolveMetierTrouve(activity.work);
+      }
 
-          headers: {
-            "Content-Type":
-              "application/json"
-          },
+      const predictionData = {
+        salaire_mensuel: activity.salary,
+        hhmilieu2: habitatNearestTown.zone_type || "Unknown",
+        hhreg: habitatNearestTown.region,
+        q4a_02: "Non",
+        metier_trouve: activity.metier_trouve
+      };
 
-          body:
-            JSON.stringify(
-              predictionData
-            )
-        }
+      console.log(
+        "→ Données envoyées à calculer_score.php :",
+        predictionData
       );
 
-    const result =
-      await response.json();
+      try {
 
-    console.log(
-      "✓ Score individuel :",
-      result
+        const response =
+          await fetch(
+            "calculer_score.php",
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body:
+                JSON.stringify(
+                  predictionData
+                )
+            }
+          );
+
+        const result =
+          await response.json();
+
+        if (result.success && Number.isFinite(
+          Number(result.data?.score_individuel_epm)
+        )) {
+
+          activity.scoreIndividuel =
+            Number(result.data.score_individuel_epm);
+
+          console.log(
+            "✓ Score individuel :",
+            activity.work,
+            "→",
+            activity.scoreIndividuel
+          );
+
+        } else {
+
+          activity.scoreIndividuel = null;
+
+          console.error(
+            "✗ Score non calculé pour",
+            activity.work,
+            `(${response.status}) :`,
+            result.message || "Score absent de la réponse PHP.",
+            result.data
+          );
+        }
+
+      } catch (e) {
+
+        activity.scoreIndividuel = null;
+
+        console.error(
+          "✗ Erreur calcul du score pour",
+          activity.work,
+          ":",
+          e
+        );
+      }
+    }
+  }
+
+  // Le fond depend des scores individuels qui viennent d'etre calcules.
+  state.financeData = buildFinanceData(state);
+
+  // Le Module 6 utilise le fond, le transport et les prix locaux.
+  try {
+    state.dimensioningData = await loadDimensioningData(
+      state.financeData,
+      state.locationData
     );
-
   } catch (e) {
-
-    console.error(
-      "✗ Erreur calcul du score :",
-      e
-    );
+    state.dimensioningData = {
+      status: "error",
+      financial_feasible: false,
+      reason: e.message
+    };
+    console.error("✗ Erreur Module 6 :", e);
   }
 
   buildRecap();

@@ -314,6 +314,7 @@ async function buildLocationData(state, villes) {
       level: nearestTown.level,
       priceCoeff: nearestTown.priceCoeff,
       region: nearestTown.region,
+      zone_type: nearestTown.zone_type,
       road_distance: nearestTown.road_distance,
       direction: nearestTown.direction
     },

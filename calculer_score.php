@@ -51,18 +51,26 @@ $predictionData = [
     'salaire_mensuel' => $input['salaire_mensuel'] ?? null,
     'hhmilieu2'       => $input['hhmilieu2'] ?? null,
     'hhreg'           => $input['hhreg'] ?? null,
-    'q4a_02'          => $input['q4a_02'] ?? null
+    'q4a_02'          => $input['q4a_02'] ?? null,
+    'metier_trouve'   => $input['metier_trouve'] ?? null
 ];
 
 
 /**
  * 4. Vérifications minimales
+ *
+ * `metier_trouve` est requis au même titre que les autres champs :
+ * c'est l'une des 5 `original_features` attendues par le modèle
+ * (voir model_metadata.json). Sans elle, predict.py échoue avec
+ * "Variables manquantes dans les données d'entrée".
  */
 if (
     $predictionData['salaire_mensuel'] === null ||
     $predictionData['hhmilieu2'] === null ||
     $predictionData['hhreg'] === null ||
-    $predictionData['q4a_02'] === null
+    $predictionData['q4a_02'] === null ||
+    $predictionData['metier_trouve'] === null ||
+    $predictionData['metier_trouve'] === ''
 ) {
     sendJson(
         false,

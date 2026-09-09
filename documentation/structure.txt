@@ -8,6 +8,7 @@ C:.
 |   LICENSE
 |   README.md
 |   structure.txt
+|   calculer_score.php
 |   
 +---css
 |       style.css
