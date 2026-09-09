@@ -126,6 +126,15 @@ function buildDimensioningData(financeData, locationData, priceRows) {
     };
   }
 
+  if (!Number.isFinite(fond) || fond <= 0) {
+    return {
+      status: "blocked",
+      reason: "Le fond mensuel est nul ou negatif : installation non recommandee.",
+      fond: Number.isFinite(fond) ? Math.round(fond) : null,
+      financial_feasible: false
+    };
+  }
+
   if (!kit.complete) {
     return {
       status: "incomplete_prices",

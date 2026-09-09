@@ -35,11 +35,20 @@ const state = {
   // Module 3
   familyData: null,
 
+  // Module 4
+  socioEconomicData: null,
+
   // Module 5
   financeData: null,
 
   // Module 6
   dimensioningData: null,
+
+  // Module 7
+  energyData: null,
+
+  // Module 8
+  solarDimensioningData: null,
 
   family: {
     name: "",
@@ -2564,6 +2573,13 @@ function buildOutputPayload() {
       state.familyData,
 
     // ------------------------------------------------------------
+    // MODULE 4 — SCORE SOCIO-ÉCONOMIQUE
+    // ------------------------------------------------------------
+
+    socioEconomicData:
+      state.socioEconomicData,
+
+    // ------------------------------------------------------------
     // MODULE 5 — CAPACITÉ FINANCIÈRE
     // ------------------------------------------------------------
 
@@ -2576,6 +2592,20 @@ function buildOutputPayload() {
 
     dimensioningData:
       state.dimensioningData,
+
+    // ------------------------------------------------------------
+    // MODULE 7 — BESOIN ÉNERGÉTIQUE
+    // ------------------------------------------------------------
+
+    energyData:
+      state.energyData,
+
+    // ------------------------------------------------------------
+    // MODULE 8 — DIMENSIONNEMENT PHOTOVOLTAÏQUE
+    // ------------------------------------------------------------
+
+    solarDimensioningData:
+      state.solarDimensioningData,
 
     // ------------------------------------------------------------
     // DONNÉES FAMILIALES BRUTES / NORMALISÉES
@@ -2886,6 +2916,8 @@ async function buildRecapWithLocationData() {
     }
   }
 
+  state.socioEconomicData = buildSocioEconomicData(state);
+
   // Le fond depend des scores individuels qui viennent d'etre calcules.
   state.financeData = buildFinanceData(state);
 
@@ -2902,6 +2934,24 @@ async function buildRecapWithLocationData() {
       reason: e.message
     };
     console.error("✗ Erreur Module 6 :", e);
+  }
+
+  state.energyData = buildEnergyData(state.financeData);
+
+  try {
+    state.solarDimensioningData = await loadSolarDimensioningData(
+      state.financeData,
+      state.dimensioningData,
+      state.energyData,
+      state.locationData
+    );
+  } catch (e) {
+    state.solarDimensioningData = {
+      status: "error",
+      reason: e.message,
+      recommendation: null
+    };
+    console.error("✗ Erreur Module 8 :", e);
   }
 
   buildRecap();
