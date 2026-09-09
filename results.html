@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSAA — Résultats</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.results-shell { max-width: 1180px; margin: -1.75rem auto 4rem; padding: 0 1.5rem; }
+.results-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.8rem; }
+.metric { background: var(--paper-card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem; min-height: 92px; }
+.metric-label { color: var(--ink-soft); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.metric-value { display: block; margin-top: 0.4rem; font-family: var(--font-display); font-size: 1.25rem; }
+.result-layout { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr); gap: 1.5rem; align-items: start; }
+.status-line { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; border-left: 4px solid var(--gold); padding: 0.6rem 0.8rem; background: #fffaf0; }
+.status-line strong { font-family: var(--font-mono); text-transform: uppercase; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+th, td { text-align: left; padding: 0.65rem; border-bottom: 1px solid var(--line); }
+th { color: var(--ink-soft); font-size: 0.72rem; text-transform: uppercase; }
+#installation-svg { width: 100%; min-height: 430px; display: block; border: 1px solid var(--line); border-radius: var(--radius); background: #f6f3ec; }
+.result-note { color: var(--ink-soft); font-size: 0.88rem; }
+@media (max-width: 850px) { .results-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .result-layout { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .results-grid { grid-template-columns: 1fr; } .results-shell { padding: 0 0.9rem; } }
+</style>
+</head>
+<body>
+<header class="blueprint-header">
+  <span class="dossier-tag">DSAA — Module 9</span>
+  <h1>Résultats du dimensionnement</h1>
+  <p>Lecture du dossier, de la décision financière et du schéma fonctionnel de l'installation.</p>
+</header>
+<main class="results-shell">
+  <section class="card">
+    <div class="status-line"><span><strong id="result-status">Chargement</strong></span><span id="result-location">Localisation</span></div>
+    <p class="result-note" id="result-reason"></p>
+  </section>
+  <section class="results-grid" aria-label="Indicateurs principaux">
+    <div class="metric"><span class="metric-label">Fond mensuel</span><strong class="metric-value" id="result-fond">—</strong></div>
+    <div class="metric"><span class="metric-label">Budget dimensionnement</span><strong class="metric-value" id="result-budget">—</strong></div>
+    <div class="metric"><span class="metric-label">Coût installation</span><strong class="metric-value" id="result-installation">—</strong></div>
+    <div class="metric"><span class="metric-label">Reste disponible</span><strong class="metric-value" id="result-remaining">—</strong></div>
+    <div class="metric"><span class="metric-label">Besoin idéal X</span><strong class="metric-value" id="result-target">—</strong></div>
+    <div class="metric"><span class="metric-label">Minimum Y</span><strong class="metric-value" id="result-minimum">—</strong></div>
+    <div class="metric"><span class="metric-label">Maximum accessible Z</span><strong class="metric-value" id="result-maximum">—</strong></div>
+    <div class="metric"><span class="metric-label">Production retenue</span><strong class="metric-value" id="result-recommended">—</strong></div>
+  </section>
+  <section class="card" id="recommendation-section" hidden>
+    <h2><span class="idx">§1</span> Configuration recommandée</h2>
+    <div class="results-grid">
+      <div class="metric"><span class="metric-label">Besoin énergétique</span><strong class="metric-value" id="result-energy">—</strong></div>
+      <div class="metric"><span class="metric-label">Production pire mois</span><strong class="metric-value" id="result-production">—</strong></div>
+      <div class="metric"><span class="metric-label">Autonomie</span><strong class="metric-value" id="result-autonomy">—</strong></div>
+      <div class="metric"><span class="metric-label">Dossier</span><strong class="metric-value" id="result-name">—</strong></div>
+    </div>
+    <div class="table-wrap" style="margin-top:1.2rem;"><table><thead><tr><th>Composant</th><th>Spécification</th><th>Qté</th><th>Prix unitaire</th><th>Total</th></tr></thead><tbody id="components-body"></tbody></table></div>
+    <p class="result-note" id="result-electrical-limitations"></p>
+  </section>
+  <section class="card" id="schematic-section" hidden>
+    <h2><span class="idx">§2</span> Schéma électrique fonctionnel</h2>
+    <p class="result-note">Le schéma reprend les quantités, le montage série/parallèle et la puissance de la recommandation calculée. Les limites non présentes dans le catalogue restent signalées par le module de dimensionnement.</p>
+    <svg id="installation-svg" role="img" aria-label="Schéma de l'installation photovoltaïque"></svg>
+  </section>
+  <div class="nav-buttons"><button class="btn-secondary" type="button" onclick="history.back()">← Retour</button><button class="btn-primary" type="button" onclick="window.location.href='interface.html'">Nouveau dossier →</button></div>
+</main>
+<script src="js/results.js"></script>
+</body>
+</html>

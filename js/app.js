@@ -2709,6 +2709,11 @@ function buildRecap() {
       null,
       2
     );
+
+  sessionStorage.setItem(
+    "dsaaPayload",
+    JSON.stringify(payload)
+  );
 }
 
 // ================================================================
@@ -3028,6 +3033,24 @@ const copyButton =
   document.getElementById(
     "copy-json"
   );
+
+const viewResultsButton =
+  document.getElementById(
+    "view-results"
+  );
+
+if (viewResultsButton) {
+  viewResultsButton.addEventListener(
+    "click",
+    () => {
+      sessionStorage.setItem(
+        "dsaaPayload",
+        JSON.stringify(buildOutputPayload())
+      );
+      window.location.href = "results.html";
+    }
+  );
+}
 
 if (copyButton) {
 
