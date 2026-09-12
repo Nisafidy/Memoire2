@@ -5,13 +5,7 @@
  * et des scores individuels produits pour chaque activite.
  */
 
-const FINANCE_CONFIG = {
-  baseline_living_cost: 210000,
-  equivalence_scale: 0.4,
-  leisure_base: 25000,
-  mean_score: 50,
-  score_exponent: 0.2
-};
+const FINANCE_CONFIG = DSAA_CONFIG.finance;
 
 function buildFinanceData(state) {
   const familyData = state.familyData;

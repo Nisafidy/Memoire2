@@ -19,6 +19,78 @@ function setText(id, value) {
   if (element) element.textContent = value;
 }
 
+function describeDecision(status, dimensioning) {
+  const decisions = {
+    recommended_target: {
+      title: "Installation recommandée",
+      badge: "Besoin couvert",
+      explanation: "Une configuration disponible respecte votre besoin énergétique idéal et reste dans le budget calculé.",
+      meaning: "Le système a trouvé une installation techniquement compatible, financièrement accessible et assez puissante pour votre foyer.",
+      action: "Consultez le matériel proposé et vérifiez les prix, la disponibilité et l'emplacement avant toute décision.",
+      className: "is-success"
+    },
+    recommended_budget_limited: {
+      title: "Installation possible, mais limitée par le budget",
+      badge: "Besoin partiellement couvert",
+      explanation: "Le budget ne permet pas d'atteindre le besoin idéal. La meilleure configuration accessible est affichée.",
+      meaning: "Une installation est possible, mais elle produira moins que le niveau énergétique estimé comme idéal.",
+      action: "Comparez cette configuration avec une augmentation du budget ou réduisez les équipements prioritaires du foyer.",
+      className: "is-warning"
+    },
+    no_solution_budget: {
+      title: "Budget insuffisant pour une configuration fiable",
+      badge: "Budget à revoir",
+      explanation: "Le catalogue contient des solutions techniques, mais aucune ne respecte à la fois votre budget et le minimum de production attendu.",
+      meaning: "Le problème vient du financement, pas nécessairement de votre besoin: les équipements existent, mais ils coûtent plus que le budget mobilisable.",
+      action: "Augmentez le budget, étudiez un financement progressif ou demandez un catalogue avec des équipements moins coûteux.",
+      className: "is-warning"
+    },
+    no_catalog_solution: {
+      title: "Aucune configuration fiable trouvée",
+      badge: "Catalogue à compléter",
+      explanation: dimensioning.missing_components?.length
+        ? `Le catalogue ne contient pas encore tous les composants nécessaires : ${dimensioning.missing_components.join(", ")}.`
+        : "Les composants disponibles ne permettent pas de construire une configuration techniquement compatible. Votre dossier reste calculé, mais aucune installation ne peut être recommandée.",
+      meaning: dimensioning.missing_components?.length
+        ? "Le moteur ne peut pas comparer les installations parce qu'il manque des informations de prix ou de caractéristiques techniques."
+        : "Le moteur a trouvé des composants, mais leurs tensions, puissances ou capacités ne peuvent pas être assemblées de manière fiable.",
+      action: "Complétez le catalogue des prix et des caractéristiques techniques, puis relancez le calcul.",
+      className: "is-blocked"
+    },
+    blocked: {
+      title: "Résultat incomplet",
+      badge: "Vérification nécessaire",
+      explanation: "Le calcul ne peut pas conclure. Vérifiez les informations financières, énergétiques ou de localisation du dossier.",
+      meaning: "Une donnée indispensable manque ou n'est pas valide; le résultat ne doit pas être utilisé pour décider d'un achat.",
+      action: "Retournez au dossier et vérifiez la localisation, le profil familial, les revenus et les activités déclarées.",
+      className: "is-blocked"
+    }
+  };
+  return decisions[status] || {
+    title: "Résultat à vérifier",
+    badge: "Statut inconnu",
+    explanation: "Le dossier a été chargé, mais son état ne correspond pas à un résultat connu.",
+    meaning: "Le résultat reçu n'est pas reconnu par cette version de l'application.",
+    action: "Conservez le dossier et contactez la personne responsable de l'application avant de l'interpréter.",
+    className: "is-warning"
+  };
+}
+
+function renderDecision(status, dimensioning) {
+  const decision = describeDecision(status, dimensioning);
+  const card = document.getElementById("decision-card");
+  if (card) {
+    card.classList.remove("is-success", "is-warning", "is-blocked");
+    card.classList.add(decision.className);
+  }
+  setText("decision-title", decision.title);
+  setText("decision-badge", decision.badge);
+  setText("decision-explanation", decision.explanation);
+  setText("decision-meaning", decision.meaning);
+  setText("decision-action", decision.action);
+  setText("result-status", decision.badge);
+}
+
 function addSvgElement(svg, tag, attributes = {}, text = "") {
   const element = document.createElementNS(SVG_NS, tag);
   Object.entries(attributes).forEach(([key, value]) => {
@@ -115,10 +187,9 @@ function renderResults(payload) {
   const energy = payload.energyData || {};
   const location = payload.locationData || {};
 
+  renderDecision(dimensioning.status, dimensioning);
   setText("result-name", payload.family?.name || "Dossier sans nom");
   setText("result-location", location.nearest_town?.name || "Localisation non disponible");
-  setText("result-status", dimensioning.status || "inconnu");
-  setText("result-reason", dimensioning.reason || "");
   setText("result-target", `${number(dimensioning.target_energy).toFixed(2)} kWh/jour`);
   setText("result-minimum", dimensioning.minimum_energy == null ? "Non calculable" : `${number(dimensioning.minimum_energy).toFixed(2)} kWh/jour`);
   setText("result-maximum", dimensioning.maximum_affordable_energy == null ? "Non calculable" : `${number(dimensioning.maximum_affordable_energy).toFixed(2)} kWh/jour`);
@@ -150,11 +221,20 @@ function loadResults() {
   const raw = sessionStorage.getItem("dsaaPayload");
   const payload = raw ? JSON.parse(raw) : null;
   if (!payload) {
-    setText("result-status", "aucun dossier");
-    setText("result-reason", "Aucun résultat DSAA n'est disponible. Revenez au formulaire.");
+    renderDecision("blocked", {});
+    setText("decision-title", "Aucun dossier à afficher");
+    setText("decision-explanation", "Cette page ne contient pas encore de résultat calculé.");
+    setText("decision-meaning", "Vous êtes arrivé sur l'écran des résultats sans transmettre de dossier.");
+    setText("decision-action", "Retournez au formulaire, complétez les quatre étapes, puis ouvrez les résultats.");
     return;
   }
   renderResults(payload);
 }
 
-document.addEventListener("DOMContentLoaded", loadResults);
+if (typeof document !== "undefined") {
+  document.addEventListener("DOMContentLoaded", loadResults);
+}
+
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { describeDecision };
+}

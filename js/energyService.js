@@ -5,13 +5,7 @@
  * Les parametres sont centralises afin d'etre calibres experimentalement.
  */
 
-const ENERGY_CONFIG = {
-  base_energy_need_kwh_day: 2,
-  mean_score: 50,
-  score_exponent: 0.2,
-  days_per_month: 30,
-  months_per_year: 12
-};
+const ENERGY_CONFIG = DSAA_CONFIG.energy;
 
 function buildEnergyData(financeData) {
   const familyScore = Number(financeData?.family_score);

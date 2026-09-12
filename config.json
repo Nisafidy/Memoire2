@@ -1,0 +1,86 @@
+{
+  "app": {
+    "total_steps": 4
+  },
+  "location": {
+    "baseline_living_cost": 210000,
+    "equivalence_scale": 0.4,
+    "leisure_base": 25000,
+    "mean_score": 50,
+    "road_price": {
+      "est": 54,
+      "sud": 66,
+      "ouest": 125,
+      "nord": 125
+    },
+    "stay_fees": 13500,
+    "earth_radius": 6371,
+    "road_distance_factor": 1.3,
+    "autonomy_min": 1,
+    "mean_irradiation": 1075
+  },
+  "family": {
+    "min_family_size": 1,
+    "max_family_size": 30,
+    "min_age": 1,
+    "max_age": 110,
+    "roles_by_age": {
+      "youth": {
+        "min": 0,
+        "max": 21,
+        "roles": ["père", "mère", "frère / sœur"]
+      },
+      "adult": {
+        "min": 21,
+        "max": 35,
+        "roles": ["vous", "époux / épouse", "père", "mère", "frère / sœur"]
+      },
+      "mature": {
+        "min": 35,
+        "max": 40,
+        "roles": ["vous", "époux / épouse", "père", "mère"]
+      },
+      "senior": {
+        "min": 40,
+        "max": 150,
+        "roles": ["vous", "époux / épouse", "père", "mère", "enfant"]
+      }
+    }
+  },
+  "socio_economic": {
+    "mean_score": 50,
+    "model_version": "4.0"
+  },
+  "finance": {
+    "baseline_living_cost": 210000,
+    "equivalence_scale": 0.4,
+    "leisure_base": 25000,
+    "mean_score": 50,
+    "score_exponent": 0.2
+  },
+  "dimensioning": {
+    "max_saving_months": 12,
+    "required_categories": ["Panneau", "Batterie", "Onduleur"]
+  },
+  "energy": {
+    "base_energy_need_kwh_day": 2,
+    "mean_score": 50,
+    "score_exponent": 0.2,
+    "days_per_month": 30,
+    "months_per_year": 12
+  },
+  "solar_dimensioning": {
+    "system_efficiency": 0.75,
+    "autonomy_min_days": 1,
+    "minimum_energy_kwh_month": 10,
+    "days_per_month": 30,
+    "depth_of_discharge": {
+      "lithium": 0.8,
+      "gel": 0.5,
+      "agm": 0.5,
+      "default": 0.5
+    },
+    "max_panels": 20,
+    "max_batteries": 12
+  }
+}

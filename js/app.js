@@ -76,7 +76,8 @@ const state = {
 };
 
 let currentStep = 1;
-const TOTAL_STEPS = 4;
+const TOTAL_STEPS = DSAA_CONFIG.app.total_steps;
+let recapReadyPromise = null;
 
 // ================================================================
 // DONNÉES DE RÉFÉRENCE
@@ -769,7 +770,7 @@ function haversine(
   lon2
 ) {
 
-  const R = 6371;
+  const R = DSAA_CONFIG.location.earth_radius;
 
   const dLat =
     ((lat2 - lat1) * Math.PI) / 180;
@@ -2460,7 +2461,7 @@ function showStep(step) {
 
   if (step === 4) {
 
-    buildRecapWithLocationData();
+    recapReadyPromise = buildRecapWithLocationData();
   }
 
   updateNextButtonState();
@@ -3042,7 +3043,15 @@ const viewResultsButton =
 if (viewResultsButton) {
   viewResultsButton.addEventListener(
     "click",
-    () => {
+    async () => {
+      if (recapReadyPromise) {
+        await recapReadyPromise;
+      }
+
+      if (!state.familyData) {
+        state.familyData = await buildFamilyData(state);
+      }
+
       sessionStorage.setItem(
         "dsaaPayload",
         JSON.stringify(buildOutputPayload())
@@ -3105,6 +3114,8 @@ if (copyButton) {
 (async function init() {
 
   try {
+
+    await DSAA_CONFIG_READY;
 
     // 1. Charger metier.csv + villes.csv
     await loadReferenceData();

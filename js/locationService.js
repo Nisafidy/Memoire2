@@ -15,28 +15,7 @@
 // CONFIGURATION
 // ---------------------------------------------------------------
 
-const LOCATION_CONFIG = {
-  baseline_living_cost: 210000,              // Ar/mois
-  equivalence_scale: 0.4,
-  leisure_base: 25000,                       // Ar/personne/mois
-  mean_score: 50,                            // score moyen de référence
-  
-  // Coûts de transport selon direction géographique
-  road_price: {
-    est: 54,
-    sud: 66,
-    ouest: 125,
-    nord: 125
-  },
-  
-  // Frais de séjour minimum (à ajouter au coût transport aller-retour, un séjour minimum de 2jours)
-  stay_fees: 13500,                          // Ar
-  
-  // Paramètres système
-  earth_radius: 6371,                        // km
-  autonomy_min: 1,                           // jours minimum
-  mean_irradiation: 1075,                    // kWh/m²/an (référence Madagascar)
-};
+const LOCATION_CONFIG = DSAA_CONFIG.location;
 
 // ---------------------------------------------------------------
 // 1. CALCUL DE DISTANCES
@@ -66,7 +45,7 @@ function haversineDistance(lat1, lon1, lat2, lon2) {
  * @returns {number} Distance routière estimée en km
  */
 function estimateRoadDistance(straightDistance) {
-  return straightDistance * 1.3;
+  return straightDistance * LOCATION_CONFIG.road_distance_factor;
 }
 
 /**

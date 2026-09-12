@@ -15,36 +15,7 @@
 // CONFIGURATION
 // ---------------------------------------------------------------
 
-const FAMILY_CONFIG = {
-  min_family_size: 1,
-  max_family_size: 30,
-  min_age: 1,
-  max_age: 110,
-  
-  // Rôles possibles par groupe d'âge
-  roles_by_age: {
-    youth: {      // 0-21 ans
-      min: 0,
-      max: 21,
-      roles: ["père", "mère", "frère / sœur"]
-    },
-    adult: {      // 21-35 ans
-      min: 21,
-      max: 35,
-      roles: ["vous", "époux / épouse", "père", "mère", "frère / sœur"]
-    },
-    mature: {     // 35-40 ans
-      min: 35,
-      max: 40,
-      roles: ["vous", "époux / épouse", "père", "mère"]
-    },
-    senior: {     // 40+ ans
-      min: 40,
-      max: 150,
-      roles: ["vous", "époux / épouse", "père", "mère", "enfant"]
-    }
-  }
-};
+const FAMILY_CONFIG = DSAA_CONFIG.family;
 
 // ---------------------------------------------------------------
 // 1. VALIDATION

@@ -5,14 +5,7 @@
  * mensuel du Module 5 et du cout de transport du Module 2.
  */
 
-const DIMENSIONING_CONFIG = {
-  max_saving_months: 12,
-  required_categories: [
-    "Panneau",
-    "Batterie",
-    "Onduleur"
-  ]
-};
+const DIMENSIONING_CONFIG = DSAA_CONFIG.dimensioning;
 
 function positivePrice(row) {
   const price = Number(

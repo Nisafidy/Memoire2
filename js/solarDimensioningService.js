@@ -5,20 +5,17 @@
  * le besoin energetique, la production solaire et l'autonomie.
  */
 
-const SOLAR_DIMENSIONING_CONFIG = {
-  system_efficiency: 0.75,
-  autonomy_min_days: 1,
-  minimum_energy_kwh_month: 10,
-  days_per_month: 30,
-  depth_of_discharge: {
-    lithium: 0.8,
-    gel: 0.5,
-    agm: 0.5,
-    default: 0.5
-  },
-  max_panels: 20,
-  max_batteries: 12
-};
+const SOLAR_DIMENSIONING_CONFIG = typeof DSAA_CONFIG !== "undefined"
+  ? DSAA_CONFIG.solar_dimensioning
+  : {
+      system_efficiency: 0.75,
+      autonomy_min_days: 1,
+      minimum_energy_kwh_month: 10,
+      days_per_month: 30,
+      depth_of_discharge: { lithium: 0.8, gel: 0.5, agm: 0.5, default: 0.5 },
+      max_panels: 20,
+      max_batteries: 12
+    };
 
 function parsePrice(row) {
   const price = Number(

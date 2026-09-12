@@ -5,10 +5,7 @@
  * puis calcule le family_score selon la formule documentaire.
  */
 
-const SOCIO_ECONOMIC_CONFIG = {
-  mean_score: 50,
-  model_version: "4.0"
-};
+const SOCIO_ECONOMIC_CONFIG = DSAA_CONFIG.socio_economic;
 
 function getScoredWorkerData(workers) {
   return workers.map((worker) => {
